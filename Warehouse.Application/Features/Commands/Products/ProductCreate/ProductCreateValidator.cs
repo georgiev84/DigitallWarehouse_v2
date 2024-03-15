@@ -24,7 +24,7 @@ public class ProductCreateValidator : AbstractValidator<ProductCreateCommand>
         RuleFor(command => command.GroupIds)
             .NotEmpty().WithMessage(ValidationMessages.IdMustBeProvided(nameof(ProductCreateCommand.GroupIds)));
 
-        RuleFor(command => command.SizeInformation)
-            .NotEmpty().WithMessage(ValidationMessages.IdMustBeProvided(nameof(ProductCreateCommand.SizeInformation)));
+        RuleFor(command => command.Sizes)
+            .NotEmpty().WithMessage(ValidationMessages.IdMustBeProvided(nameof(ProductCreateCommand.Sizes)));
     }
 }

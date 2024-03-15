@@ -73,7 +73,8 @@ public class MappingProfile : Profile
     private void MapFromDtoToResponse()
     {
         CreateMap<ProductDto, ProductDetailedResponse>();
-        CreateMap<SizeInformationRequest, SizeInformationDto>();
+        CreateMap<SizeInformationRequest, SizeInformationDto>()
+            .ForMember(dest => dest.SizeId, opt => opt.MapFrom(src => src.Id));
         CreateMap<SizeDto, SizeResponse>();
         CreateMap<OrderUpdateDto, ProductCreateResponse>();
         CreateMap<ProductUpdateDetailsDto, ProductUpdateResponse>();

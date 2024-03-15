@@ -9,4 +9,4 @@ public record ProductCreateCommand(
     string Description,
     decimal Price,
     List<Guid> GroupIds,
-    List<SizeInformationDto> SizeInformation) : IRequest<ProductCreateDetailsDto>;
+    List<SizeInformationDto> Sizes) : IRequest<ProductCreateDetailsDto>;

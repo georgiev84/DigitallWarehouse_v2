@@ -12,6 +12,7 @@ public class ProductUpdateCommandHandler(IMapper _mapper, IUnitOfWork _unitOfWor
     public async Task<ProductUpdateDetailsDto> Handle(ProductUpdateCommand command, CancellationToken cancellationToken)
     {
         var existingProduct = await _unitOfWork.Products.GetProductDetailsByIdAsync(command.Id);
+
         if (existingProduct is null)
         {
             throw new ProductNotFoundException($"Product with ID {command.Id} not found.");
@@ -20,7 +21,7 @@ public class ProductUpdateCommandHandler(IMapper _mapper, IUnitOfWork _unitOfWor
         _mapper.Map(command, existingProduct);
 
         existingProduct.ProductSizes.Clear();
-        foreach (var newSize in command.SizeInformation)
+        foreach (var newSize in command.Sizes)
         {
             existingProduct.ProductSizes.Add(_mapper.Map<ProductSize>(newSize));
         }
@@ -33,6 +34,7 @@ public class ProductUpdateCommandHandler(IMapper _mapper, IUnitOfWork _unitOfWor
                 GroupId = groupId
             });
         }
+
 
         _unitOfWork.Products.Update(existingProduct);
         await _unitOfWork.SaveAsync();

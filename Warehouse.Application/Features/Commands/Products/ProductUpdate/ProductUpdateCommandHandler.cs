@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using System.Text.RegularExpressions;
 using Warehouse.Application.Common.Interfaces.Persistence;
 using Warehouse.Application.Models.Dto.ProductDtos;
 using Warehouse.Domain.Entities.Products;
@@ -39,16 +40,12 @@ public class ProductUpdateCommandHandler(IMapper _mapper, IUnitOfWork _unitOfWor
             });
         }
 
-        var brand = new Brand
-        {
-            Id = existingProduct.Brand.Id,
-            Name = existingProduct.Brand.Name
-        };
-
         _unitOfWork.Products.Update(existingProduct);
         await _unitOfWork.SaveAsync();
 
+        var brand = await _unitOfWork.Brands.GetById(command.BrandId);
         existingProduct.Brand = brand;
+
         var updatedProductDto = _mapper.Map<ProductUpdateDetailsDto>(existingProduct);
 
         return updatedProductDto;

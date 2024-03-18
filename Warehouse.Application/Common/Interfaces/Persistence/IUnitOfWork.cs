@@ -8,6 +8,7 @@ public interface IUnitOfWork : IDisposable
     IBasketRepository Baskets { get; }
     IBasketLineRepository BasketLines { get; }
     IProductSizeRepository ProductSizes { get; }
+    IGroupRepository Groups { get; }
 
     Task<int> SaveAsync();
 }

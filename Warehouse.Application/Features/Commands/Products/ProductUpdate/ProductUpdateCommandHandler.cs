@@ -26,19 +26,29 @@ public class ProductUpdateCommandHandler(IMapper _mapper, IUnitOfWork _unitOfWor
             existingProduct.ProductSizes.Add(_mapper.Map<ProductSize>(newSize));
         }
 
+        var groups = await _unitOfWork.Groups.GetAll();
+
         existingProduct.ProductGroups.Clear();
         foreach (var groupId in command.GroupIds)
         {
+            var group = groups.FirstOrDefault(g => g.Id == groupId);
             existingProduct.ProductGroups.Add(new ProductGroup
             {
-                GroupId = groupId
+                GroupId = groupId,
+                Group = group
             });
         }
 
+        var brand = new Brand
+        {
+            Id = existingProduct.Brand.Id,
+            Name = existingProduct.Brand.Name
+        };
 
         _unitOfWork.Products.Update(existingProduct);
         await _unitOfWork.SaveAsync();
 
+        existingProduct.Brand = brand;
         var updatedProductDto = _mapper.Map<ProductUpdateDetailsDto>(existingProduct);
 
         return updatedProductDto;

@@ -1,5 +1,5 @@
-﻿using Warehouse.Application.Models.Dto.ProductDtos;
-using Warehouse.Application.Models.Dto;
+﻿using Warehouse.Application.Models.Dto;
+using Warehouse.Application.Models.Dto.ProductDtos;
 
 namespace Warehouse.Api.Models.Responses.ProductResponses;
 
@@ -13,5 +13,4 @@ public class ProductCreateResponse
     public Guid BrandId { get; set; }
     public List<GroupDto>? Groups { get; set; }
     public List<SizeDto>? Sizes { get; set; }
-
 }

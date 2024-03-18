@@ -138,13 +138,14 @@ public class MappingProfile : Profile
         CreateMap<Product, ProductDetailsDto>()
             .ForMember(dest => dest.Brand, opt => opt.MapFrom(src => src.Brand.Name))
             .ForMember(dest => dest.Groups, opt => opt.MapFrom(src => src.ProductGroups.Select(pg => new GroupDto { Id = pg.Group.Id, Name = pg.Group.Name }).ToList()))
-            .ForMember(dest => dest.Sizes, opt => opt.MapFrom(src => src.ProductSizes.Select(ps => new SizeDto { Id =ps.SizeId, Quantity = ps.QuantityInStock, Name = ps.Size.Name }).ToList()));
+            .ForMember(dest => dest.Sizes, opt => opt.MapFrom(src => src.ProductSizes.Select(ps => new SizeDto { Id = ps.SizeId, Quantity = ps.QuantityInStock, Name = ps.Size.Name }).ToList()));
 
         CreateMap<Product, ProductCreateDetailsDto>()
             .ForMember(dest => dest.Brand, opt => opt.MapFrom(src => src.Brand.Name))
             .ForMember(dest => dest.Groups, opt => opt.MapFrom(src => src.ProductGroups.Select(pg => new GroupDto { Id = pg.Group.Id, Name = pg.Group.Name }).ToList()))
             .ForMember(dest => dest.Sizes, opt => opt.MapFrom(src => src.ProductSizes.Select(ps => new SizeDto { Id = ps.SizeId, Quantity = ps.QuantityInStock, Name = ps.Size.Name }).ToList()));
 
+        CreateMap<ProductGroup, GroupDto>();
         CreateMap<Product, ProductUpdateDetailsDto>()
             .ForMember(dest => dest.Brand, opt => opt.MapFrom(src => src.Brand.Name))
             .ForMember(dest => dest.Groups, opt => opt.MapFrom(src => src.ProductGroups.Select(pg => new GroupDto { Id = pg.Group.Id, Name = pg.Group.Name }).ToList()))

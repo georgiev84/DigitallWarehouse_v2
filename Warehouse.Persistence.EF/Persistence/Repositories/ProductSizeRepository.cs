@@ -1,6 +1,5 @@
 ﻿using Warehouse.Application.Common.Interfaces.Persistence;
 using Warehouse.Domain.Entities.Products;
-using Warehouse.Domain.Exceptions;
 using Warehouse.Domain.Exceptions.ProductExceptions;
 using Warehouse.Persistence.Abstractions;
 using Warehouse.Persistence.EF.Persistence.Contexts;

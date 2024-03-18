@@ -12,6 +12,7 @@ public class UnitOfWork : IUnitOfWork
     public IBasketRepository Baskets { get; }
     public IBasketLineRepository BasketLines { get; }
     public IProductSizeRepository ProductSizes { get; }
+    public IGroupRepository Groups { get; set; }
 
     public UnitOfWork(
         WarehouseDbContext dbContext,
@@ -20,7 +21,8 @@ public class UnitOfWork : IUnitOfWork
         IOrderRepository orders,
         IBasketRepository baskets,
         IBasketLineRepository basketLines,
-        IProductSizeRepository productSizes)
+        IProductSizeRepository productSizes,
+        IGroupRepository groups)
     {
         _dbContext = dbContext;
         Products = productRepository;
@@ -29,6 +31,7 @@ public class UnitOfWork : IUnitOfWork
         Baskets = baskets;
         BasketLines = basketLines;
         ProductSizes = productSizes;
+        Groups = groups;
     }
 
     public async Task<int> SaveAsync()

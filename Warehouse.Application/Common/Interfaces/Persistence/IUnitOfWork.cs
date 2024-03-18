@@ -9,6 +9,6 @@ public interface IUnitOfWork : IDisposable
     IBasketLineRepository BasketLines { get; }
     IProductSizeRepository ProductSizes { get; }
     IGroupRepository Groups { get; }
-
+    IBrandRepository Brands { get; }
     Task<int> SaveAsync();
 }

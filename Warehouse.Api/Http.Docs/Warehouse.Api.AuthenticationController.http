@@ -1,0 +1,16 @@
+﻿@Warehouse.Api_HostAddress = https://localhost:7054
+
+### Login
+POST {{Warehouse.Api_HostAddress}}/api/authentication/login
+accept: */*
+Content-Type: application/json
+
+{
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+
+### Get All Products
+GET {{Warehouse.Api_HostAddress}}/api/products
+accept:  application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMTExMTExMS0yMjIyLTIzMjEtMjMyMS0xMTExMTExMTE0NTYiLCJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwiZ2l2ZW5fbmFtZSI6IkpvaG4iLCJmYW1pbHlfbmFtZSI6IkRvZSIsImp0aSI6ImM2MjRmMDkwLTFjY2YtNDU1YS1iNjAzLTdmYTEzZGZlYzZmOSIsIlJvbGUiOiJhZG1pbiIsImV4cCI6MTcxMDk0OTcxMiwiaXNzIjoiRGlnaXRhbGxXYXJlaG91c2UiLCJhdWQiOiJEaWdpdGFsbFdhcmVob3VzZSJ9.M2H3JEDaGidAJRLdOhyjyahR4lE3xL3rszQPuMTS_a8

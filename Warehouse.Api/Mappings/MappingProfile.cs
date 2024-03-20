@@ -6,6 +6,7 @@ using Warehouse.Api.Models.Requests.BasketLine;
 using Warehouse.Api.Models.Requests.Orders;
 using Warehouse.Api.Models.Requests.Product;
 using Warehouse.Api.Models.Responses.BasketResponses;
+using Warehouse.Api.Models.Responses.LoginResponses;
 using Warehouse.Api.Models.Responses.OrderResponses;
 using Warehouse.Api.Models.Responses.ProductResponses;
 using Warehouse.Application.Features.Commands.BasketLines.BasketLineBulkDelete;
@@ -25,6 +26,7 @@ using Warehouse.Application.Models.Dto;
 using Warehouse.Application.Models.Dto.BasketDtos;
 using Warehouse.Application.Models.Dto.OrderDtos;
 using Warehouse.Application.Models.Dto.ProductDtos;
+using Warehouse.Application.Models.Login;
 
 namespace Warehouse.Api.Mappings;
 
@@ -92,5 +94,6 @@ public class MappingProfile : Profile
         CreateMap<BasketLineUpdateDto, BasketLineUpdateResponse>();
         CreateMap<OrderUpdateDto, OrderResponse>();
         CreateMap<ProductCreateDetailsDto, ProductCreateResponse>();
+        CreateMap<LoginModel, LoginResponse>();
     }
 }

@@ -29,6 +29,7 @@ public static class DependencyRegistrationExtension
         services.AddScoped<IProductSizeRepository, ProductSizeRepository>();
         services.AddScoped<IGroupRepository, GroupRepository>();
         services.AddScoped<IBrandRepository, BrandRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
         return services;
     }
 }

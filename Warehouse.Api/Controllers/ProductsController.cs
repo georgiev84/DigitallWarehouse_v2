@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Warehouse.Api.Models.Requests.Product;
 using Warehouse.Api.Models.Responses.ProductResponses;
@@ -7,9 +8,11 @@ using Warehouse.Application.Features.Commands.Products.Delete;
 using Warehouse.Application.Features.Commands.Products.ProductCreate;
 using Warehouse.Application.Features.Commands.Products.Update;
 using Warehouse.Application.Features.Queries.Product.ProductList;
+using Warehouse.Infrastructure.Identity;
 
 namespace Warehouse.Api.Controllers;
 
+[Authorize(Policy = IdentityData.AdminUserPolicyName)]
 public class ProductsController : BaseController
 {
     [HttpGet]

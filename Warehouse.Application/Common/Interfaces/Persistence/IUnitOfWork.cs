@@ -10,5 +10,6 @@ public interface IUnitOfWork : IDisposable
     IProductSizeRepository ProductSizes { get; }
     IGroupRepository Groups { get; }
     IBrandRepository Brands { get; }
+    IUserRepository Users { get; }
     Task<int> SaveAsync();
 }

@@ -95,5 +95,6 @@ public class MappingProfile : Profile
         CreateMap<OrderUpdateDto, OrderResponse>();
         CreateMap<ProductCreateDetailsDto, ProductCreateResponse>();
         CreateMap<LoginModel, LoginResponse>();
+        CreateMap<RefreshModel, RefreshTokenResponse>();
     }
 }

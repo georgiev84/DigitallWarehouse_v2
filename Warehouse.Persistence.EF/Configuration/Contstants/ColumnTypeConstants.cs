@@ -8,4 +8,6 @@ public static class ColumnTypeConstants
     public const int TitleMaxLength = 100;
     public const int LoginMaxLength = 50;
     public const int AddressMaxLength = 100;
+    public const int RoleMaxLength = 50;
+    public const int RefreshTokenMaxLength = 100;
 }

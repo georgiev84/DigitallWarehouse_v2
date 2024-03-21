@@ -51,7 +51,8 @@ public static class DependencyRegistrationExtension
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = JwtSettings.Issuer,
                     ValidAudience = JwtSettings.Audience,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtSettings.Secret))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtSettings.Secret)),
+                    ClockSkew = TimeSpan.Zero
                 };
 
             });

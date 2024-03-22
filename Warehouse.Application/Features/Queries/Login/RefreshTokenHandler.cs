@@ -23,10 +23,6 @@ public class RefreshTokenHandler : IRequestHandler<RefreshTokenQuery, RefreshMod
     {
         var principal = _jwtTokenGenerator.GetPrincipalFromExpiredToken(request.Token);
 
-        //var userIdClaim = principal.FindFirst(JwtRegisteredClaimNames.Sub);
-        //var userIdClaim = principal.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier");
-
-
         JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
 
         // Read the JWT token

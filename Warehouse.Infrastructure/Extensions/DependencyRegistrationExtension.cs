@@ -29,6 +29,7 @@ public static class DependencyRegistrationExtension
         services.AddHttpClient<MockApiCLient>();
         services.AddScoped<IMockApiClient, MockApiCLient>();
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+        services.AddSingleton<ITokenBlackListService, TokenBlacklistService>();
 
         return services;
     }
@@ -53,6 +54,20 @@ public static class DependencyRegistrationExtension
                     ValidAudience = JwtSettings.Audience,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtSettings.Secret)),
                     ClockSkew = TimeSpan.Zero
+                };
+
+                options.Events = new JwtBearerEvents
+                {
+                    OnTokenValidated = async context =>
+                    {
+                        var tokenBlacklist = context.HttpContext.RequestServices.GetRequiredService<ITokenBlackListService>();
+                        var tokenId = context.SecurityToken.Id;
+
+                        if (await tokenBlacklist.IsTokenBlacklisted(tokenId))
+                        {
+                            context.Fail("Token has been blacklisted");
+                        }
+                    }
                 };
 
             });

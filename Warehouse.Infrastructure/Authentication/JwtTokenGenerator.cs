@@ -64,10 +64,4 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         generator.GetBytes(randomNumber);
         return Convert.ToBase64String(randomNumber);
     }
-
-    public string RevokeToken(User user)
-    {
-        DateTime expirationTime = _dateTimeProvider.UtcNow.AddMinutes(-10);
-        return GenerateToken(user, expirationTime);
-    }
 }

@@ -11,12 +11,14 @@ public class LogoutHandler : IRequestHandler<LogoutQuery, LogoutModel>
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IDateTimeProvider _dateTimeProvider;
+    private readonly ITokenBlackListService _tokenBlackListService;
 
-    public LogoutHandler(IJwtTokenGenerator jwtTokenGenerator, IUnitOfWork unitOfWork, IDateTimeProvider dateTimeProvider)
+    public LogoutHandler(IJwtTokenGenerator jwtTokenGenerator, IUnitOfWork unitOfWork, IDateTimeProvider dateTimeProvider, ITokenBlackListService tokenBlackListService)
     {
         _jwtTokenGenerator = jwtTokenGenerator;
         _unitOfWork = unitOfWork;
         _dateTimeProvider = dateTimeProvider;
+        _tokenBlackListService = tokenBlackListService;
     }
 
     public async Task<LogoutModel> Handle(LogoutQuery request, CancellationToken cancellationToken)
@@ -24,7 +26,7 @@ public class LogoutHandler : IRequestHandler<LogoutQuery, LogoutModel>
         JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
         JwtSecurityToken jwtToken = tokenHandler.ReadJwtToken(request.Token);
         string subClaim = jwtToken.Subject;
-
+        string tokenId = jwtToken.Id;
         Guid subGuid = Guid.Parse(subClaim);
 
         var user = await _unitOfWork.Users.GetById(subGuid);
@@ -35,7 +37,7 @@ public class LogoutHandler : IRequestHandler<LogoutQuery, LogoutModel>
         }
 
         // invalidate token
-        var revokedToken = _jwtTokenGenerator.RevokeToken(user);
+        await _tokenBlackListService.BlacklistToken(tokenId);
 
         // delete refreshToken from database
         user.RefreshToken = null;
@@ -46,7 +48,7 @@ public class LogoutHandler : IRequestHandler<LogoutQuery, LogoutModel>
         // return expired token and null refresh token
         var logoutModel = new LogoutModel
         {
-            Token = revokedToken,
+            Token = request.Token,
             RefreshToken = null
         };
 

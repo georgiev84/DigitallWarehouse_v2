@@ -14,7 +14,7 @@ public class UnitOfWork : IUnitOfWork
     public IProductSizeRepository ProductSizes { get; }
     public IGroupRepository Groups { get; set; }
     public IBrandRepository Brands { get; set; }
-    public  IUserRepository Users { get; set; }
+    public IUserRepository Users { get; set; }
 
     public UnitOfWork(
         WarehouseDbContext dbContext,

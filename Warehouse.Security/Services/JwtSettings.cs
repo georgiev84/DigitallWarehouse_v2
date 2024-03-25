@@ -1,4 +1,5 @@
-﻿namespace Warehouse.Infrastructure.Authentication;
+﻿namespace Warehouse.Security.Services;
+
 public class JwtSettings
 {
     public const string SectionName = "JwtSettings";

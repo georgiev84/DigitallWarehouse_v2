@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using System.Text.RegularExpressions;
 using Warehouse.Application.Common.Interfaces.Persistence;
 using Warehouse.Application.Models.Dto.ProductDtos;
 using Warehouse.Domain.Entities.Products;

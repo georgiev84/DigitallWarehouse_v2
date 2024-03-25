@@ -1,6 +1,5 @@
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Text.Json.Serialization;
@@ -8,6 +7,7 @@ using Warehouse.Api.Filters;
 using Warehouse.Application.Behavior;
 using Warehouse.Application.Extensions;
 using Warehouse.Persistence.EF.Extensions;
+using Warehouse.Security.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +16,8 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration)
-    .AddPersistenceEF(builder.Configuration);
+    .AddPersistenceEF(builder.Configuration)
+    .AddAuth(builder.Configuration);
 
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
@@ -56,8 +57,6 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
-
-
 
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));

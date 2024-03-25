@@ -1,19 +1,20 @@
 ﻿using MediatR;
 using System.IdentityModel.Tokens.Jwt;
-using Warehouse.Application.Common.Interfaces.Authentication;
 using Warehouse.Application.Common.Interfaces.Persistence;
 using Warehouse.Application.Models.Login;
-using Warehouse.Application.Services;
+using Warehouse.Domain.Entities.Users;
+using Warehouse.Security.Interfaces;
 
 namespace Warehouse.Application.Features.Queries.Login;
+
 public class LogoutHandler : IRequestHandler<LogoutQuery, LogoutModel>
 {
-    private readonly IJwtTokenGenerator _jwtTokenGenerator;
+    private readonly IJwtTokenGenerator<User> _jwtTokenGenerator;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IDateTimeProvider _dateTimeProvider;
     private readonly ITokenBlackListService _tokenBlackListService;
 
-    public LogoutHandler(IJwtTokenGenerator jwtTokenGenerator, IUnitOfWork unitOfWork, IDateTimeProvider dateTimeProvider, ITokenBlackListService tokenBlackListService)
+    public LogoutHandler(IJwtTokenGenerator<User> jwtTokenGenerator, IUnitOfWork unitOfWork, IDateTimeProvider dateTimeProvider, ITokenBlackListService tokenBlackListService)
     {
         _jwtTokenGenerator = jwtTokenGenerator;
         _unitOfWork = unitOfWork;

@@ -14,7 +14,7 @@ public class User
     public string Address { get; set; }
     public string Role { get; set; }
     public string? RefreshToken { get; set; }
-    public DateTime RefreshTokenExpiry { get; set; } 
+    public DateTime RefreshTokenExpiry { get; set; }
     public Guid BasketId { get; set; }
     public Basket? Basket { get; set; }
     public ICollection<Order> Orders { get; set; }

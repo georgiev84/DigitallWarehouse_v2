@@ -17,7 +17,6 @@ public class AuthenticationController : BaseController
         _mediator = mediator;
     }
 
-
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequest request, [FromServices] IMapper _mapper)
     {

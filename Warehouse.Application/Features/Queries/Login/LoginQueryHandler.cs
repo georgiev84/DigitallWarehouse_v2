@@ -1,16 +1,18 @@
 ﻿using MediatR;
-using Warehouse.Application.Common.Interfaces.Authentication;
 using Warehouse.Application.Common.Interfaces.Persistence;
 using Warehouse.Application.Models.Login;
-using Warehouse.Application.Services;
+using Warehouse.Domain.Entities.Users;
+using Warehouse.Security.Interfaces;
 
 namespace Warehouse.Application.Features.Queries.Login;
+
 public class LoginCommandHandler : IRequestHandler<LoginQuery, LoginModel>
 {
-    private readonly IJwtTokenGenerator _jwtTokenGenerator;
+    private readonly IJwtTokenGenerator<User> _jwtTokenGenerator;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IDateTimeProvider _dateTimeProvider;
-    public LoginCommandHandler(IJwtTokenGenerator jwtTokenGenerator, IUnitOfWork unitOfWork, IDateTimeProvider dateTimeProvider)
+
+    public LoginCommandHandler(IJwtTokenGenerator<User> jwtTokenGenerator, IUnitOfWork unitOfWork, IDateTimeProvider dateTimeProvider)
     {
         _jwtTokenGenerator = jwtTokenGenerator;
         _unitOfWork = unitOfWork;
@@ -22,9 +24,8 @@ public class LoginCommandHandler : IRequestHandler<LoginQuery, LoginModel>
         // user exist
         var user = await _unitOfWork.Users.GetUserByEmail(query.Email);
 
-
         // validate password
-        if (query.Password  != user.Password)
+        if (query.Password != user.Password)
         {
             throw new Exception("Invalid password.");
         }

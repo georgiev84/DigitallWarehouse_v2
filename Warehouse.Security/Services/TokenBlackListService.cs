@@ -1,6 +1,7 @@
-﻿using Warehouse.Application.Common.Interfaces.Authentication;
+﻿using Warehouse.Security.Interfaces;
 
-namespace Warehouse.Infrastructure.Authentication;
+namespace Warehouse.Security.Services;
+
 public class TokenBlacklistService : ITokenBlackListService
 {
     private readonly HashSet<string> _blacklistedTokens = new HashSet<string>();

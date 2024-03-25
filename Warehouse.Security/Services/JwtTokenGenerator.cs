@@ -4,13 +4,13 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using Warehouse.Application.Common.Interfaces.Authentication;
-using Warehouse.Application.Services;
 using Warehouse.Domain.Entities.Users;
-using Warehouse.Infrastructure.Identity;
+using Warehouse.Security.Identity;
+using Warehouse.Security.Interfaces;
 
-namespace Warehouse.Infrastructure.Authentication;
-public class JwtTokenGenerator : IJwtTokenGenerator
+namespace Warehouse.Security.Services;
+
+public class JwtTokenGenerator<TUser> : IJwtTokenGenerator<TUser> where TUser : User
 {
     private readonly IDateTimeProvider _dateTimeProvider;
     private readonly JwtSettings _jwtSettings;
@@ -21,14 +21,14 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         _jwtSettings = jwtOptions.Value;
     }
 
-    public string GenerateToken(User user)
+    public string GenerateToken(TUser user)
     {
         DateTime defaultExpirationTime = _dateTimeProvider.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes);
 
         return GenerateToken(user, defaultExpirationTime);
     }
 
-    public string GenerateToken(User user, DateTime? expirationTime = null)
+    public string GenerateToken(TUser user, DateTime? expirationTime = null)
     {
         if (expirationTime == null)
         {

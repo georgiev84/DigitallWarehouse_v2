@@ -1,6 +1,7 @@
-﻿using Warehouse.Application.Services;
+﻿using Warehouse.Security.Interfaces;
 
-namespace Warehouse.Infrastructure.Services;
+namespace Warehouse.Security.Services;
+
 public class DateTimeProvider : IDateTimeProvider
 {
     public DateTime UtcNow => DateTime.UtcNow;

@@ -15,6 +15,7 @@ namespace Warehouse.Api.Controllers;
 [Authorize(Policy = IdentityData.AdminUserPolicyName)]
 public class ProductsController : BaseController
 {
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> GetProducts(
          [FromQuery] ProductFilterRequest productFilter,

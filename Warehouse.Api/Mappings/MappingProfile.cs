@@ -96,5 +96,6 @@ public class MappingProfile : Profile
         CreateMap<ProductCreateDetailsDto, ProductCreateResponse>();
         CreateMap<LoginModel, LoginResponse>();
         CreateMap<RefreshModel, RefreshTokenResponse>();
+        CreateMap<LogoutModel, LogoutResponse>();
     }
 }

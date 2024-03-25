@@ -6,5 +6,5 @@ public interface IJwtTokenGenerator
 {
     string GenerateToken(User user);
     string GenerateRefreshToken();
-    ClaimsPrincipal? GetPrincipalFromExpiredToken(string expiredToken);
+    string RevokeToken(User user);
 }

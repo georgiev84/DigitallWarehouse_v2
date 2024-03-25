@@ -23,6 +23,18 @@ public class JwtTokenGenerator : IJwtTokenGenerator
 
     public string GenerateToken(User user)
     {
+        DateTime defaultExpirationTime = _dateTimeProvider.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes);
+
+        return GenerateToken(user, defaultExpirationTime);
+    }
+
+    public string GenerateToken(User user, DateTime? expirationTime = null)
+    {
+        if (expirationTime == null)
+        {
+            expirationTime = _dateTimeProvider.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes);
+        }
+
         var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret)), SecurityAlgorithms.HmacSha256);
 
         var claims = new[]
@@ -38,7 +50,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         var securityToken = new JwtSecurityToken(
             issuer: _jwtSettings.Issuer,
             audience: _jwtSettings.Audience,
-             expires: _dateTimeProvider.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes),
+            expires: expirationTime.Value,
             claims: claims,
             signingCredentials: signingCredentials);
 
@@ -53,19 +65,9 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         return Convert.ToBase64String(randomNumber);
     }
 
-    public ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token)
+    public string RevokeToken(User user)
     {
-        var validation = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = false,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = _jwtSettings.Issuer,
-            ValidAudience = _jwtSettings.Audience,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret))
-        };
-
-        return new JwtSecurityTokenHandler().ValidateToken(token, validation, out _);
+        DateTime expirationTime = _dateTimeProvider.UtcNow.AddMinutes(-10);
+        return GenerateToken(user, expirationTime);
     }
 }

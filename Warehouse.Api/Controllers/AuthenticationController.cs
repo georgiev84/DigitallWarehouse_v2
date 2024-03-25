@@ -46,4 +46,16 @@ public class AuthenticationController : BaseController
 
         return Ok(mappedResult);
     }
+
+    [HttpPost("logout")]
+    public async Task<IActionResult> Logout(LogoutRequest request, [FromServices] IMapper _mapper)
+    {
+        var query = new LogoutQuery(request.Token, request.RefreshToken);
+
+        var result = await _mediator.Send(query);
+
+        var mappedResult = _mapper.Map<LogoutResponse>(result);
+
+        return Ok(mappedResult);
+    }
 }

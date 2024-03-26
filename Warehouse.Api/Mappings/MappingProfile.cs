@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity.Data;
 using Warehouse.Api.Models.OrderResponses.Orders;
 using Warehouse.Api.Models.Requests;
 using Warehouse.Api.Models.Requests.Basket;
 using Warehouse.Api.Models.Requests.BasketLine;
+using Warehouse.Api.Models.Requests.Login;
 using Warehouse.Api.Models.Requests.Orders;
 using Warehouse.Api.Models.Requests.Product;
 using Warehouse.Api.Models.Responses.BasketResponses;
@@ -19,6 +21,7 @@ using Warehouse.Application.Features.Commands.Orders.OrderUpdate;
 using Warehouse.Application.Features.Commands.Products.ProductCreate;
 using Warehouse.Application.Features.Commands.Products.Update;
 using Warehouse.Application.Features.Queries.Basket.BasketSingleQuery;
+using Warehouse.Application.Features.Queries.Login;
 using Warehouse.Application.Features.Queries.Orders.OrderGetAll;
 using Warehouse.Application.Features.Queries.Orders.OrderGetSingle;
 using Warehouse.Application.Features.Queries.Product.ProductList;
@@ -47,6 +50,9 @@ public class MappingProfile : Profile
         CreateMap<OrderRequest, OrderGetAllQuery>();
         CreateMap<OrderSingleRequest, OrderGetSingleQuery>();
         CreateMap<BasketSingleRequest, BasketSingleQuery>();
+        CreateMap<LoginRequest, LoginQuery>();
+        CreateMap<RefreshTokenRequest, RefreshTokenQuery>();
+        CreateMap<LogoutRequest, LogoutQuery>();
     }
 
     private void MapFromRequestToCommands()

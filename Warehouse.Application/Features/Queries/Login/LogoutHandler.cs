@@ -12,9 +12,9 @@ public class LogoutHandler : IRequestHandler<LogoutQuery, LogoutModel>
     private readonly IJwtTokenGenerator<User> _jwtTokenGenerator;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IDateTimeProvider _dateTimeProvider;
-    private readonly ITokenBlackListService _tokenBlackListService;
+    private readonly ITokenBlacklistService _tokenBlackListService;
 
-    public LogoutHandler(IJwtTokenGenerator<User> jwtTokenGenerator, IUnitOfWork unitOfWork, IDateTimeProvider dateTimeProvider, ITokenBlackListService tokenBlackListService)
+    public LogoutHandler(IJwtTokenGenerator<User> jwtTokenGenerator, IUnitOfWork unitOfWork, IDateTimeProvider dateTimeProvider, ITokenBlacklistService tokenBlackListService)
     {
         _jwtTokenGenerator = jwtTokenGenerator;
         _unitOfWork = unitOfWork;

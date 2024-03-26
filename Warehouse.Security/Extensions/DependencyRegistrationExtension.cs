@@ -18,7 +18,7 @@ public static class DependencyRegistrationExtension
         var JwtSettings = new JwtSettings();
         configuration.Bind(JwtSettings.SectionName, JwtSettings);
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
-        services.AddSingleton<ITokenBlackListService, TokenBlacklistService>();
+        services.AddSingleton<ITokenBlacklistService, TokenBlacklistService>();
         services.AddSingleton(Options.Create(JwtSettings));
         services.AddSingleton(typeof(IJwtTokenGenerator<User>), typeof(JwtTokenGenerator<User>));
 
@@ -41,7 +41,7 @@ public static class DependencyRegistrationExtension
                 {
                     OnTokenValidated = async context =>
                     {
-                        var tokenBlacklist = context.HttpContext.RequestServices.GetRequiredService<ITokenBlackListService>();
+                        var tokenBlacklist = context.HttpContext.RequestServices.GetRequiredService<ITokenBlacklistService>();
                         var tokenId = context.SecurityToken.Id;
 
                         if (await tokenBlacklist.IsTokenBlacklisted(tokenId))

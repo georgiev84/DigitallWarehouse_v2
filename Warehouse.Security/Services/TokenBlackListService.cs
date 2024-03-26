@@ -2,7 +2,7 @@
 
 namespace Warehouse.Security.Services;
 
-public class TokenBlacklistService : ITokenBlackListService
+public class TokenBlacklistService : ITokenBlacklistService
 {
     private readonly HashSet<string> _blacklistedTokens = new HashSet<string>();
 

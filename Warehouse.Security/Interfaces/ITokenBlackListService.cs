@@ -1,6 +1,6 @@
 ﻿namespace Warehouse.Security.Interfaces;
 
-public interface ITokenBlackListService
+public interface ITokenBlacklistService
 {
     Task<bool> IsTokenBlacklisted(string tokenId);
 

@@ -18,9 +18,12 @@ public class AuthenticationController : BaseController
     }
 
     [HttpPost("login")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Login(LoginRequest request, [FromServices] IMapper _mapper)
     {
-        var query = new LoginQuery(request.Email, request.Password);
+        //var query = new LoginQuery(request.Email, request.Password);
+        var query = _mapper.Map<LoginQuery>(request);
 
         var result = await _mediator.Send(query);
 
@@ -35,9 +38,12 @@ public class AuthenticationController : BaseController
     }
 
     [HttpPost("refresh")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Refresh(RefreshTokenRequest request, [FromServices] IMapper _mapper)
     {
-        var query = new RefreshTokenQuery(request.Token, request.RefreshToken);
+        //var query = new RefreshTokenQuery(request.Token, request.RefreshToken);
+        var query = _mapper.Map<RefreshTokenQuery>(request);
 
         var result = await _mediator.Send(query);
 
@@ -47,9 +53,12 @@ public class AuthenticationController : BaseController
     }
 
     [HttpPost("logout")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Logout(LogoutRequest request, [FromServices] IMapper _mapper)
     {
-        var query = new LogoutQuery(request.Token, request.RefreshToken);
+        //var query = new LogoutQuery(request.Token, request.RefreshToken);
+        var query = _mapper.Map<LogoutQuery>(request);
 
         var result = await _mediator.Send(query);
 

@@ -37,16 +37,13 @@ public class LogoutHandler : IRequestHandler<LogoutQuery, LogoutModel>
             throw new UnauthorizedAccessException();
         }
 
-        // invalidate token
         await _tokenBlackListService.BlacklistToken(tokenId);
 
-        // delete refreshToken from database
         user.RefreshToken = null;
         user.RefreshTokenExpiry = _dateTimeProvider.UtcNow.AddMinutes(-10);
         _unitOfWork.Users.Update(user);
         await _unitOfWork.SaveAsync();
 
-        // return expired token and null refresh token
         var logoutModel = new LogoutModel
         {
             Token = request.Token,

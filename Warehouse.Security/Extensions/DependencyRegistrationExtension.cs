@@ -55,6 +55,7 @@ public static class DependencyRegistrationExtension
         services.AddAuthorization(options =>
         {
             options.AddPolicy(IdentityData.AdminUserPolicyName, p => p.RequireClaim(IdentityData.AdminUserClaimName, "admin"));
+            options.AddPolicy(IdentityData.CustomerPolicyName, p => p.RequireClaim(IdentityData.CustomerUserClaimName, "CustomerRole"));
         });
 
         return services;

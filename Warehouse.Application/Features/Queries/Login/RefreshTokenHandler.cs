@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Warehouse.Application.Common.Interfaces.Persistence;
 using Warehouse.Application.Models.Login;
 using Warehouse.Domain.Entities.Users;
+using Warehouse.Security.Extensions;
 using Warehouse.Security.Interfaces;
 
 namespace Warehouse.Application.Features.Queries.Login;
@@ -22,15 +23,9 @@ public class RefreshTokenHandler : IRequestHandler<RefreshTokenQuery, RefreshMod
 
     public async Task<RefreshModel> Handle(RefreshTokenQuery request, CancellationToken cancellationToken)
     {
-        JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+        var tokenId = JwtTokenParser.ParseJwtToken(request.Token);
 
-        JwtSecurityToken jwtToken = tokenHandler.ReadJwtToken(request.Token);
-
-        string subClaim = jwtToken.Subject;
-
-        Guid subGuid = Guid.Parse(subClaim);
-
-        var user = await _unitOfWork.Users.GetById(subGuid);
+        var user = await _unitOfWork.Users.GetById(tokenId);
 
         if (user is null || user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiry < _dateTimeProvider.UtcNow)
         {

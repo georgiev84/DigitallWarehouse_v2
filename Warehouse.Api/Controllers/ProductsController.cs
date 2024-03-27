@@ -8,14 +8,14 @@ using Warehouse.Application.Features.Commands.Products.Delete;
 using Warehouse.Application.Features.Commands.Products.ProductCreate;
 using Warehouse.Application.Features.Commands.Products.Update;
 using Warehouse.Application.Features.Queries.Product.ProductList;
-using Warehouse.Infrastructure.Identity;
+using Warehouse.Security.Identity;
 
 namespace Warehouse.Api.Controllers;
 
-[Authorize(Policy = IdentityData.AdminUserPolicyName)]
+[Authorize]
 public class ProductsController : BaseController
 {
-    [AllowAnonymous]
+    
     [HttpGet]
     public async Task<IActionResult> GetProducts(
          [FromQuery] ProductFilterRequest productFilter,
@@ -31,6 +31,7 @@ public class ProductsController : BaseController
         return Ok(mappedProducts);
     }
 
+    [Authorize(Policy = IdentityData.AdminUserPolicyName)]
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
@@ -49,6 +50,7 @@ public class ProductsController : BaseController
         return CreatedAtAction(nameof(CreateProduct), new { id = result.Id }, mappedResult);
     }
 
+    [Authorize(Policy = IdentityData.AdminUserPolicyName)]
     [HttpPut("{productId}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -69,6 +71,7 @@ public class ProductsController : BaseController
         return Ok(mappedResult);
     }
 
+    [Authorize(Policy = IdentityData.AdminUserPolicyName)]
     [HttpDelete("{productId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

@@ -21,16 +21,13 @@ public class LoginCommandHandler : IRequestHandler<LoginQuery, LoginModel>
 
     public async Task<LoginModel> Handle(LoginQuery query, CancellationToken cancellationToken)
     {
-        // user exist
         var user = await _unitOfWork.Users.GetUserByEmail(query.Email);
 
-        // validate password
         if (query.Password != user.Password)
         {
             throw new Exception("Invalid password.");
         }
 
-        // create token
         var token = _jwtTokenGenerator.GenerateToken(user);
         var refreshToken = _jwtTokenGenerator.GenerateRefreshToken();
 

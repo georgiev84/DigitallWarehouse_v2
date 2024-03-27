@@ -53,6 +53,7 @@ public class MappingProfile : Profile
         CreateMap<LoginRequest, LoginQuery>();
         CreateMap<RefreshTokenRequest, RefreshTokenQuery>();
         CreateMap<LogoutRequest, LogoutQuery>();
+        CreateMap<GoogleRequest, LoginGoogleQuery>();
     }
 
     private void MapFromRequestToCommands()
@@ -103,5 +104,6 @@ public class MappingProfile : Profile
         CreateMap<LoginModel, LoginResponse>();
         CreateMap<RefreshModel, RefreshTokenResponse>();
         CreateMap<LogoutModel, LogoutResponse>();
+        CreateMap<LoginGoogleModel, LoginGoogleResponse>();
     }
 }

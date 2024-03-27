@@ -7,6 +7,7 @@ using System.Text;
 using Warehouse.Domain.Entities.Users;
 using Warehouse.Security.Identity;
 using Warehouse.Security.Interfaces;
+using Warehouse.Security.Models;
 
 namespace Warehouse.Security.Services;
 
@@ -63,5 +64,32 @@ public class JwtTokenGenerator<TUser> : IJwtTokenGenerator<TUser> where TUser : 
         using var generator = RandomNumberGenerator.Create();
         generator.GetBytes(randomNumber);
         return Convert.ToBase64String(randomNumber);
+    }
+
+    public string GenerateTokenWithGoogle(GoogleUserInfo user, DateTime? expirationTime = null)
+    {
+        if (expirationTime == null)
+        {
+            expirationTime = _dateTimeProvider.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes);
+        }
+
+        var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret)), SecurityAlgorithms.HmacSha256);
+
+        var claims = new[]
+        {
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new Claim(JwtRegisteredClaimNames.Email, user.Email),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(IdentityData.CustomerUserClaimName, "CustomerRole")
+        };
+
+        var securityToken = new JwtSecurityToken(
+            issuer: _jwtSettings.Issuer,
+            audience: _jwtSettings.Audience,
+            expires: expirationTime.Value,
+            claims: claims,
+            signingCredentials: signingCredentials);
+
+        return new JwtSecurityTokenHandler().WriteToken(securityToken);
     }
 }

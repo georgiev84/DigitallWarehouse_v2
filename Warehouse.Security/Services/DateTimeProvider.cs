@@ -1,4 +1,4 @@
-﻿using Warehouse.Security.Interfaces;
+﻿using Warehouse.Application.Common.Interfaces.Security;
 
 namespace Warehouse.Security.Services;
 

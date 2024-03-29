@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Warehouse.Security.Interfaces;
+using Warehouse.Application.Common.Interfaces.Persistence;
 using Warehouse.Security.Redis.Repositories;
 
 namespace Warehouse.Security.Extensions;

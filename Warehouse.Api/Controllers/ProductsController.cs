@@ -8,7 +8,7 @@ using Warehouse.Application.Features.Commands.Products.Delete;
 using Warehouse.Application.Features.Commands.Products.ProductCreate;
 using Warehouse.Application.Features.Commands.Products.Update;
 using Warehouse.Application.Features.Queries.Product.ProductList;
-using Warehouse.Security.Identity;
+using Warehouse.Application.Identity;
 
 namespace Warehouse.Api.Controllers;
 

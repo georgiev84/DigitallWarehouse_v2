@@ -1,7 +1,7 @@
-﻿using Warehouse.Domain.Entities.Users;
-using Warehouse.Security.Models;
+﻿using Warehouse.Application.Models.Dto;
+using Warehouse.Domain.Entities.Users;
 
-namespace Warehouse.Security.Interfaces;
+namespace Warehouse.Application.Common.Interfaces.Security;
 
 public interface IJwtTokenGenerator<TUser> where TUser : User
 {

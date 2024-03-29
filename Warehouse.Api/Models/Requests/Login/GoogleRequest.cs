@@ -1,6 +1,4 @@
-﻿using Warehouse.Security.Models;
-
-namespace Warehouse.Api.Models.Requests.Login;
+﻿namespace Warehouse.Api.Models.Requests.Login;
 
 public class GoogleRequest
 {

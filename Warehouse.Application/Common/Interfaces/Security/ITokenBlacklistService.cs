@@ -1,4 +1,4 @@
-﻿namespace Warehouse.Security.Interfaces;
+﻿namespace Warehouse.Application.Common.Interfaces.Security;
 
 public interface ITokenBlacklistService
 {

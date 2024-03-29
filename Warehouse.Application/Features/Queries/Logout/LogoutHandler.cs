@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using System.IdentityModel.Tokens.Jwt;
 using Warehouse.Application.Common.Interfaces.Persistence;
+using Warehouse.Application.Common.Interfaces.Security;
 using Warehouse.Application.Models.Login;
-using Warehouse.Security.Interfaces;
 
 namespace Warehouse.Application.Features.Queries.Logout;
 

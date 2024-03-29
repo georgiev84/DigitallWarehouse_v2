@@ -1,4 +1,5 @@
-﻿using Warehouse.Security.Interfaces;
+﻿using Warehouse.Application.Common.Interfaces.Persistence;
+using Warehouse.Application.Common.Interfaces.Security;
 
 namespace Warehouse.Security.Services;
 
@@ -16,13 +17,10 @@ public class TokenBlacklistService : ITokenBlacklistService
     {
         var blacklistedToken = await _repository.IsTokenBlacklisted(tokenId);
         return blacklistedToken;
-        //return Task.FromResult(_blacklistedTokens.Contains(tokenId));
     }
 
     public async Task BlacklistToken(string tokenId)
     {
-        //_blacklistedTokens.Add(tokenId);
         await _repository.BlacklistToken(tokenId);
-        //return Task.CompletedTask;
     }
 }

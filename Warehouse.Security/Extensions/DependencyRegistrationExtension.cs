@@ -4,9 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Warehouse.Application.Common.Interfaces.Security;
+using Warehouse.Application.Identity;
 using Warehouse.Domain.Entities.Users;
-using Warehouse.Security.Identity;
-using Warehouse.Security.Interfaces;
 using Warehouse.Security.Services;
 
 namespace Warehouse.Security.Extensions;
@@ -21,6 +21,11 @@ public static class DependencyRegistrationExtension
         services.AddSingleton<ITokenBlacklistService, TokenBlacklistService>();
         services.AddSingleton(Options.Create(JwtSettings));
         services.AddSingleton(typeof(IJwtTokenGenerator<User>), typeof(JwtTokenGenerator<User>));
+        services.AddStackExchangeRedisCache(options =>
+        {
+            string connection = configuration.GetConnectionString("Redis");
+            options.Configuration = connection;
+        });
 
         services.AddAuthentication(defaultScheme: JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>

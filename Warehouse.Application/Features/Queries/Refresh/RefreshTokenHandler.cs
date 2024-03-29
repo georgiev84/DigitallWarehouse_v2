@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Warehouse.Application.Common.Interfaces.Persistence;
+using Warehouse.Application.Common.Interfaces.Security;
+using Warehouse.Application.Extensions;
 using Warehouse.Application.Models.Login;
 using Warehouse.Domain.Entities.Users;
-using Warehouse.Security.Extensions;
-using Warehouse.Security.Interfaces;
 
 namespace Warehouse.Application.Features.Queries.Refresh;
 
@@ -23,6 +23,7 @@ public class RefreshTokenHandler : IRequestHandler<RefreshTokenQuery, RefreshMod
     public async Task<RefreshModel> Handle(RefreshTokenQuery request, CancellationToken cancellationToken)
     {
         var tokenId = JwtTokenParser.ParseJwtToken(request.Token);
+
 
         var user = await _unitOfWork.Users.GetById(tokenId);
 

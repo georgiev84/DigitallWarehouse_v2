@@ -1,4 +1,5 @@
-﻿namespace Warehouse.Security.Models;
+﻿namespace Warehouse.Application.Models.Dto;
+
 public class GoogleUserInfo
 {
     public string Token { get; set; }

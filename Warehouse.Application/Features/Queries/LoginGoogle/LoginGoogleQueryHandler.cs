@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
+using Warehouse.Application.Common.Interfaces.Security;
+using Warehouse.Application.Models.Dto;
 using Warehouse.Application.Models.Login;
 using Warehouse.Domain.Entities.Users;
-using Warehouse.Security.Interfaces;
-using Warehouse.Security.Models;
 
 namespace Warehouse.Application.Features.Queries.LoginGoogle;
 public class LoginGoogleQueryHandler : IRequestHandler<LoginGoogleQuery, LoginGoogleModel>

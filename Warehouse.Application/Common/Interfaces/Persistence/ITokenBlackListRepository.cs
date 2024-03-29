@@ -1,4 +1,4 @@
-﻿namespace Warehouse.Security.Interfaces;
+﻿namespace Warehouse.Application.Common.Interfaces.Persistence;
 public interface ITokenBlackListRepository
 {
     Task<bool> IsTokenBlacklisted(string tokenId);

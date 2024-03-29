@@ -28,6 +28,8 @@
     <ProjectReference Include="..\Warehouse.Application\Warehouse.Application.csproj" />
     <ProjectReference Include="..\Warehouse.Infrastructure\Warehouse.Infrastructure.csproj" />
     <ProjectReference Include="..\Warehouse.Persistence.EF\Warehouse.Persistence.EF.csproj" />
+    <ProjectReference Include="..\Warehouse.Security.Redis\Warehouse.Security.Redis.csproj" />
+    <ProjectReference Include="..\Warehouse.Security\Warehouse.Security.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using System.Text;
-using Warehouse.Security.Interfaces;
+using Warehouse.Application.Common.Interfaces.Persistence;
 
 namespace Warehouse.Security.Redis.Repositories;
 public class TokenBlackListRepository : ITokenBlackListRepository

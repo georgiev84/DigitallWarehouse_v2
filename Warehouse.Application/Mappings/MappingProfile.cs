@@ -14,7 +14,6 @@ using Warehouse.Application.Models.Dto.ProductDtos;
 using Warehouse.Domain.Entities.Baskets;
 using Warehouse.Domain.Entities.Orders;
 using Warehouse.Domain.Entities.Products;
-using Warehouse.Security.Models;
 
 namespace Warehouse.Application.Mappings;
 

@@ -20,7 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Warehouse.Domain\Warehouse.Domain.csproj" />
     <ProjectReference Include="..\Warehouse.Persistence.Abstractions\Warehouse.Persistence.Abstractions.csproj" />
-    <ProjectReference Include="..\Warehouse.Security\Warehouse.Security.csproj" />
   </ItemGroup>
 
 </Project>

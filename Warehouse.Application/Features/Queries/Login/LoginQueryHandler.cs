@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Warehouse.Application.Common.Interfaces.Persistence;
+using Warehouse.Application.Common.Interfaces.Security;
 using Warehouse.Application.Models.Login;
 using Warehouse.Domain.Entities.Users;
-using Warehouse.Security.Interfaces;
 
 namespace Warehouse.Application.Features.Queries.Login;
 

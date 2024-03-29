@@ -1,4 +1,4 @@
-﻿namespace Warehouse.Security.Identity;
+﻿namespace Warehouse.Application.Identity;
 
 public class IdentityData
 {

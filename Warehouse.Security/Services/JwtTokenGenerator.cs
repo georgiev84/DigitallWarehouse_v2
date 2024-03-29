@@ -4,10 +4,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Warehouse.Application.Common.Interfaces.Security;
+using Warehouse.Application.Identity;
+using Warehouse.Application.Models.Dto;
 using Warehouse.Domain.Entities.Users;
-using Warehouse.Security.Identity;
-using Warehouse.Security.Interfaces;
-using Warehouse.Security.Models;
 
 namespace Warehouse.Security.Services;
 

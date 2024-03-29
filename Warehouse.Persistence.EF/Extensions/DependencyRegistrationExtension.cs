@@ -30,11 +30,7 @@ public static class DependencyRegistrationExtension
         services.AddScoped<IGroupRepository, GroupRepository>();
         services.AddScoped<IBrandRepository, BrandRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
-        services.AddStackExchangeRedisCache(options =>
-        {
-            string connection = configuration.GetConnectionString("Redis");
-            options.Configuration = connection;
-        });
+
         return services;
     }
 }

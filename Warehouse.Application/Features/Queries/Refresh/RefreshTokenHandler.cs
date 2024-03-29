@@ -1,12 +1,11 @@
 ﻿using MediatR;
-using System.IdentityModel.Tokens.Jwt;
 using Warehouse.Application.Common.Interfaces.Persistence;
 using Warehouse.Application.Models.Login;
 using Warehouse.Domain.Entities.Users;
 using Warehouse.Security.Extensions;
 using Warehouse.Security.Interfaces;
 
-namespace Warehouse.Application.Features.Queries.Login;
+namespace Warehouse.Application.Features.Queries.Refresh;
 
 public class RefreshTokenHandler : IRequestHandler<RefreshTokenQuery, RefreshModel>
 {

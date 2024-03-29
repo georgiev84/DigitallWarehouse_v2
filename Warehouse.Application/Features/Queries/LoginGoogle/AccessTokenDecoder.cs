@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace Warehouse.Application.Features.Queries.Login;
+namespace Warehouse.Application.Features.Queries.LoginGoogle;
 public class AccessTokenDecoder
 {
     private const string TokenInfoEndpoint = "https://www.googleapis.com/oauth2/v3/tokeninfo?access_token={0}";

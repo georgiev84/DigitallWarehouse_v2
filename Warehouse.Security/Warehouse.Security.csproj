@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Warehouse.Domain\Warehouse.Domain.csproj" />
+    <ProjectReference Include="..\Warehouse.Security.Redis\Warehouse.Security.Redis.csproj" />
   </ItemGroup>
 
 </Project>

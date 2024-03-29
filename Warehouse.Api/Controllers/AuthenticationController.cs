@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Warehouse.Api.Models.Requests.Login;
 using Warehouse.Api.Models.Responses.LoginResponses;
 using Warehouse.Application.Features.Queries.Login;
+using Warehouse.Application.Features.Queries.LoginGoogle;
+using Warehouse.Application.Features.Queries.Logout;
+using Warehouse.Application.Features.Queries.Refresh;
 using Warehouse.Security.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 

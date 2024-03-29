@@ -11,13 +11,13 @@ using Warehouse.Security.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration)
     .AddPersistenceEF(builder.Configuration)
-    .AddAuth(builder.Configuration);
+    .AddAuth(builder.Configuration)
+    .AddRedis(builder.Configuration);
 
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));

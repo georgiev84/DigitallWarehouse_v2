@@ -2,21 +2,18 @@
 using System.IdentityModel.Tokens.Jwt;
 using Warehouse.Application.Common.Interfaces.Persistence;
 using Warehouse.Application.Models.Login;
-using Warehouse.Domain.Entities.Users;
 using Warehouse.Security.Interfaces;
 
-namespace Warehouse.Application.Features.Queries.Login;
+namespace Warehouse.Application.Features.Queries.Logout;
 
 public class LogoutHandler : IRequestHandler<LogoutQuery, LogoutModel>
 {
-    private readonly IJwtTokenGenerator<User> _jwtTokenGenerator;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IDateTimeProvider _dateTimeProvider;
     private readonly ITokenBlacklistService _tokenBlackListService;
 
-    public LogoutHandler(IJwtTokenGenerator<User> jwtTokenGenerator, IUnitOfWork unitOfWork, IDateTimeProvider dateTimeProvider, ITokenBlacklistService tokenBlackListService)
+    public LogoutHandler(IUnitOfWork unitOfWork, IDateTimeProvider dateTimeProvider, ITokenBlacklistService tokenBlackListService)
     {
-        _jwtTokenGenerator = jwtTokenGenerator;
         _unitOfWork = unitOfWork;
         _dateTimeProvider = dateTimeProvider;
         _tokenBlackListService = tokenBlackListService;

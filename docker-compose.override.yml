@@ -2,17 +2,25 @@ version: '3.7'
 
 services:
   sql:
+    image: mcr.microsoft.com/mssql/server:latest
     environment:
-      SA_PASSWORD: "Your_Password_test123"
-      ACCEPT_EULA: "Y"
+      MSSQL_SERVER: Digitall_Sql_Server
+      MSSQL_SA_PASSWORD: Your_Sql_Password_123
+      ACCEPT_EULA: Y
+      MSSQL_USER: sa
+      MSSQL_DATABASE: Warehouse
     ports:
       - "5433:1433"
+    volumes:
+      - sqldata:/var/opt/mssql
 
   warehouse.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ConnectionStrings__WarehouseDbConnection=Server=sql;Database=Warehouse;User=sa;Password=Your_Password_test123;
+      # Use this connection string if your sql is not running in docker
+      # - ConnectionStrings__WarehouseDbConnection=Server=host.docker.internal;Database=Warehouse;User Id=sa;Password=tornado13;TrustServerCertificate=True;
+      - ConnectionStrings__WarehouseDbConnection=Server=sql;Database=Warehouse;User Id=sa;Password=Your_Sql_Password_123;TrustServerCertificate=True;
       - ConnectionStrings__Redis=redis
     ports:
       - "5200:80"
@@ -20,3 +28,7 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+volumes:
+  sqldata:
+    driver: local

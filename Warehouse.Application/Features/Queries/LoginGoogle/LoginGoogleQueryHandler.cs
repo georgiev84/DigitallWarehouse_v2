@@ -6,6 +6,7 @@ using Warehouse.Application.Models.Login;
 using Warehouse.Domain.Entities.Users;
 
 namespace Warehouse.Application.Features.Queries.LoginGoogle;
+
 public class LoginGoogleQueryHandler : IRequestHandler<LoginGoogleQuery, LoginGoogleModel>
 {
     private readonly IJwtTokenGenerator<User> _jwtTokenGenerator;

@@ -15,7 +15,6 @@ namespace Warehouse.Api.Controllers;
 [Authorize]
 public class ProductsController : BaseController
 {
-    
     [HttpGet]
     public async Task<IActionResult> GetProducts(
          [FromQuery] ProductFilterRequest productFilter,

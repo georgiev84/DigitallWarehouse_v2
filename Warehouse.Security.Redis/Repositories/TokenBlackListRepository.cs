@@ -3,6 +3,7 @@ using System.Text;
 using Warehouse.Application.Common.Interfaces.Persistence;
 
 namespace Warehouse.Security.Redis.Repositories;
+
 public class TokenBlackListRepository : ITokenBlackListRepository
 {
     private readonly IDistributedCache _distributedCache;
@@ -11,6 +12,7 @@ public class TokenBlackListRepository : ITokenBlackListRepository
     {
         _distributedCache = cache;
     }
+
     public async Task<bool> IsTokenBlacklisted(string tokenId)
     {
         byte[]? cachedValue = await _distributedCache.GetAsync(tokenId);
@@ -23,7 +25,7 @@ public class TokenBlackListRepository : ITokenBlackListRepository
         byte[] cachedValue = Encoding.UTF8.GetBytes("blacklisted");
         await _distributedCache.SetAsync(tokenId, cachedValue, new DistributedCacheEntryOptions
         {
-            AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) 
+            AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10)
         });
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 
 namespace Warehouse.Application.Extensions;
+
 public static class JwtTokenParser
 {
     public static Guid ParseJwtToken(string token)

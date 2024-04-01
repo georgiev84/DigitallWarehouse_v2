@@ -24,7 +24,6 @@ public class RefreshTokenHandler : IRequestHandler<RefreshTokenQuery, RefreshMod
     {
         var tokenId = JwtTokenParser.ParseJwtToken(request.Token);
 
-
         var user = await _unitOfWork.Users.GetById(tokenId);
 
         if (user is null || user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiry < _dateTimeProvider.UtcNow)

@@ -8,5 +8,6 @@ public interface IJwtTokenGenerator<TUser> where TUser : User
     string GenerateToken(TUser user);
 
     string GenerateRefreshToken();
+
     string GenerateTokenWithGoogle(GoogleUserInfo user, DateTime? expirationTime = null);
 }

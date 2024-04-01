@@ -1,4 +1,5 @@
 ﻿namespace Warehouse.Application.Models.Login;
+
 public class LoginGoogleModel
 {
     public string Token { get; set; }

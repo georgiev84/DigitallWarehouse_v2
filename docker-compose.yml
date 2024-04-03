@@ -23,7 +23,12 @@ services:
       - app-tier
     ports:
       - "6379:6379"
-
+  
+  react-app:
+    image: react-frontend
+    depends_on:
+      - warehouse.api
+  
 networks: 
   app-tier:
     driver: bridge

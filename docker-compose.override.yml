@@ -29,6 +29,17 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 
+  react-app:
+    # image: react-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - C:/DigitallWarehouse_FrontEnd:/app
+    environment:
+      - REACT_APP_API_URL=https://localhost:5201
+    # depends_on:
+    #   - warehouse.api
+
 volumes:
   sqldata:
     driver: local

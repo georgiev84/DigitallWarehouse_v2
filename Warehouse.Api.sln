@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouse.Tests", "Warehous
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DF466A33-4E3C-4457-903F-48DF51CE4E22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouse.Security.Redis", "Warehouse.Security.Redis\Warehouse.Security.Redis.csproj", "{ED8309C9-1A0E-4093-AC13-57A465336B0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouse.Security.Redis", "Warehouse.Security.Redis\Warehouse.Security.Redis.csproj", "{ED8309C9-1A0E-4093-AC13-57A465336B0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -62,6 +62,7 @@ public class SeedDataConfiguration :
                 Password = "password123",
                 Phone = "123-456-7890",
                 Address = "123 Main Street, City, Country",
+                Role = "admin",
                 Orders = new List<Order>()
             }
         );

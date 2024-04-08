@@ -5,6 +5,7 @@ using Warehouse.Application.Features.Commands.Orders.OrderCreate;
 using Warehouse.Application.Features.Commands.Orders.OrderUpdate;
 using Warehouse.Application.Features.Commands.Products.ProductCreate;
 using Warehouse.Application.Features.Commands.Products.Update;
+using Warehouse.Application.Features.Queries.LoginGoogle;
 using Warehouse.Application.Features.Queries.Product.ProductList;
 using Warehouse.Application.Models.Dto;
 using Warehouse.Application.Models.Dto.BasketDtos;
@@ -30,6 +31,7 @@ public class MappingProfile : Profile
     private void MapFromQueryToDto()
     {
         CreateMap<ProductListGetQuery, ItemsDto>();
+        CreateMap<LoginGoogleQuery, GoogleUserInfo>();
     }
 
     private void MapFromCommandToDto()

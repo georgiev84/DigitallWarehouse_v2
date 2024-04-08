@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  sql:
+    image: 'mcr.microsoft.com/mssql/server'
+    networks:
+      - app-tier
+
+  warehouse.api:
+    image: ${DOCKER_REGISTRY-}warehouseapi
+    build:
+      context: .
+      dockerfile: Warehouse.Api/Dockerfile
+    networks:
+      - app-tier
+
+  redis:
+    image: 'bitnami/redis:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes 
+    container_name: redis
+    networks:
+      - app-tier
+    ports:
+      - "6379:6379"
+
+networks: 
+  app-tier:
+    driver: bridge

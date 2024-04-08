@@ -14,10 +14,10 @@ public static class DependencyRegistrationExtension
         {
             throw new ArgumentNullException(nameof(configuration));
         }
-
         services.Configure<MockyClientConfiguration>(configuration.GetSection("MockyClient"));
         services.AddHttpClient<MockApiCLient>();
         services.AddScoped<IMockApiClient, MockApiCLient>();
+        ;
         return services;
     }
 }

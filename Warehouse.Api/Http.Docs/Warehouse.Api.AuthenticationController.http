@@ -1,0 +1,37 @@
+﻿@Warehouse.Api_HostAddress = https://localhost:44316
+
+### Login
+POST {{Warehouse.Api_HostAddress}}/api/authentication/login
+accept: */*
+Content-Type: application/json
+
+{
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+
+###Logout
+POST {{Warehouse.Api_HostAddress}}/api/authentication/logout
+accept: */*
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMTExMTExMS0yMjIyLTIzMjEtMjMyMS0xMTExMTExMTE0NTYiLCJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwiZ2l2ZW5fbmFtZSI6IkpvaG4iLCJmYW1pbHlfbmFtZSI6IkRvZSIsImp0aSI6IjcwNmZiN2U1LTJkZDktNDQyZC1hZjZiLTA3ZTYwOTljNjA3MCIsIlJvbGUiOiJhZG1pbiIsImV4cCI6MTcxMTY5NzkzMiwiaXNzIjoiRGlnaXRhbGxXYXJlaG91c2UiLCJhdWQiOiJEaWdpdGFsbFdhcmVob3VzZSJ9.E5o0pNCshhtYC-R8dc8ClGKIqDmChwCS0bcF6fGmyVM",
+  "refreshToken": "ebKvfiXglMoi+uT/Lg90YLdXYm60iQQz9QWuFYChoYdyALosjtDI77n4wbN+QrzBC5vITvlW2x0jbH5mSBW4oQ=="
+}
+
+### Refresh
+POST {{Warehouse.Api_HostAddress}}/api/authentication/refresh
+accept: */*
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMTExMTExMS0yMjIyLTIzMjEtMjMyMS0xMTExMTExMTE0NTYiLCJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwiZ2l2ZW5fbmFtZSI6IkpvaG4iLCJmYW1pbHlfbmFtZSI6IkRvZSIsImp0aSI6ImIzMGY1M2M1LTJlYjQtNDE5OS05MDE3LTUzYzlhNDhlMGM2NCIsIlJvbGUiOiJhZG1pbiIsImV4cCI6MTcxMTExODQyMCwiaXNzIjoiRGlnaXRhbGxXYXJlaG91c2UiLCJhdWQiOiJEaWdpdGFsbFdhcmVob3VzZSJ9.cixKrz8nE3XVo87Vf9vgxNWUQ_YO4ZUwYFXiGJ4wEcw",
+  "refreshToken": "wZqFQsdTSTBi7m0HbJ+Or2c1dxK3OwTObSWdnzAcux8akVEKenwD/PLaWmR7VPMtnh1Z4FENniYh1KK8Ekb0AQ=="
+}
+
+
+### Get All Products
+GET {{Warehouse.Api_HostAddress}}/api/products
+accept:  application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMTExMTExMS0yMjIyLTIzMjEtMjMyMS0xMTExMTExMTE0NTYiLCJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwiZ2l2ZW5fbmFtZSI6IkpvaG4iLCJmYW1pbHlfbmFtZSI6IkRvZSIsImp0aSI6IjcwNmZiN2U1LTJkZDktNDQyZC1hZjZiLTA3ZTYwOTljNjA3MCIsIlJvbGUiOiJhZG1pbiIsImV4cCI6MTcxMTY5NzkzMiwiaXNzIjoiRGlnaXRhbGxXYXJlaG91c2UiLCJhdWQiOiJEaWdpdGFsbFdhcmVob3VzZSJ9.E5o0pNCshhtYC-R8dc8ClGKIqDmChwCS0bcF6fGmyVM

@@ -156,27 +156,27 @@ namespace Warehouse.Persistence.EF.Migrations
                         new
                         {
                             Id = new Guid("11111111-2222-2321-2321-111111111111"),
-                            Name = 0
-                        },
-                        new
-                        {
-                            Id = new Guid("22222222-1111-1234-4321-222222222222"),
                             Name = 1
                         },
                         new
                         {
-                            Id = new Guid("33333333-3322-1122-4444-333333333333"),
+                            Id = new Guid("22222222-1111-1234-4321-222222222222"),
                             Name = 2
                         },
                         new
                         {
-                            Id = new Guid("44444444-5555-5555-6666-666666666666"),
+                            Id = new Guid("33333333-3322-1122-4444-333333333333"),
                             Name = 3
                         },
                         new
                         {
-                            Id = new Guid("77777777-7777-7777-8888-888888888888"),
+                            Id = new Guid("44444444-5555-5555-6666-666666666666"),
                             Name = 4
+                        },
+                        new
+                        {
+                            Id = new Guid("77777777-7777-7777-8888-888888888888"),
+                            Name = 5
                         });
                 });
 
@@ -487,8 +487,8 @@ namespace Warehouse.Persistence.EF.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<Guid>("BasketId")
                         .HasColumnType("uniqueidentifier");
@@ -516,6 +516,18 @@ namespace Warehouse.Persistence.EF.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("RefreshToken")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("RefreshTokenExpiry")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -530,7 +542,9 @@ namespace Warehouse.Persistence.EF.Migrations
                             FirstName = "John",
                             LastName = "Doe",
                             Password = "password123",
-                            Phone = "123-456-7890"
+                            Phone = "123-456-7890",
+                            RefreshTokenExpiry = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Role = "admin"
                         });
                 });
 

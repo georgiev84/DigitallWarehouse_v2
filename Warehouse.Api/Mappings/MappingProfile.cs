@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity.Data;
 using Warehouse.Api.Models.OrderResponses.Orders;
 using Warehouse.Api.Models.Requests;
 using Warehouse.Api.Models.Requests.Basket;
 using Warehouse.Api.Models.Requests.BasketLine;
+using Warehouse.Api.Models.Requests.Login;
 using Warehouse.Api.Models.Requests.Orders;
 using Warehouse.Api.Models.Requests.Product;
 using Warehouse.Api.Models.Responses.BasketResponses;
+using Warehouse.Api.Models.Responses.LoginResponses;
 using Warehouse.Api.Models.Responses.OrderResponses;
 using Warehouse.Api.Models.Responses.ProductResponses;
 using Warehouse.Application.Features.Commands.BasketLines.BasketLineBulkDelete;
@@ -18,13 +21,18 @@ using Warehouse.Application.Features.Commands.Orders.OrderUpdate;
 using Warehouse.Application.Features.Commands.Products.ProductCreate;
 using Warehouse.Application.Features.Commands.Products.Update;
 using Warehouse.Application.Features.Queries.Basket.BasketSingleQuery;
+using Warehouse.Application.Features.Queries.Login;
+using Warehouse.Application.Features.Queries.LoginGoogle;
+using Warehouse.Application.Features.Queries.Logout;
 using Warehouse.Application.Features.Queries.Orders.OrderGetAll;
 using Warehouse.Application.Features.Queries.Orders.OrderGetSingle;
 using Warehouse.Application.Features.Queries.Product.ProductList;
+using Warehouse.Application.Features.Queries.Refresh;
 using Warehouse.Application.Models.Dto;
 using Warehouse.Application.Models.Dto.BasketDtos;
 using Warehouse.Application.Models.Dto.OrderDtos;
 using Warehouse.Application.Models.Dto.ProductDtos;
+using Warehouse.Application.Models.Login;
 
 namespace Warehouse.Api.Mappings;
 
@@ -45,6 +53,10 @@ public class MappingProfile : Profile
         CreateMap<OrderRequest, OrderGetAllQuery>();
         CreateMap<OrderSingleRequest, OrderGetSingleQuery>();
         CreateMap<BasketSingleRequest, BasketSingleQuery>();
+        CreateMap<LoginRequest, LoginQuery>();
+        CreateMap<RefreshTokenRequest, RefreshTokenQuery>();
+        CreateMap<LogoutRequest, LogoutQuery>();
+        CreateMap<GoogleRequest, LoginGoogleQuery>();
     }
 
     private void MapFromRequestToCommands()
@@ -92,5 +104,9 @@ public class MappingProfile : Profile
         CreateMap<BasketLineUpdateDto, BasketLineUpdateResponse>();
         CreateMap<OrderUpdateDto, OrderResponse>();
         CreateMap<ProductCreateDetailsDto, ProductCreateResponse>();
+        CreateMap<LoginModel, LoginResponse>();
+        CreateMap<RefreshModel, RefreshTokenResponse>();
+        CreateMap<LogoutModel, LogoutResponse>();
+        CreateMap<LoginGoogleModel, LoginGoogleResponse>();
     }
 }

@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouse.Security", "Wareh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouse.Tests", "Warehouse.Tests\Warehouse.Tests.csproj", "{58E7EFD1-4570-4A5C-A768-E655FD2C94C2}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DF466A33-4E3C-4457-903F-48DF51CE4E22}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouse.Security.Redis", "Warehouse.Security.Redis\Warehouse.Security.Redis.csproj", "{ED8309C9-1A0E-4093-AC13-57A465336B0C}"
 EndProject
 Global
@@ -61,10 +59,6 @@ Global
 		{58E7EFD1-4570-4A5C-A768-E655FD2C94C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58E7EFD1-4570-4A5C-A768-E655FD2C94C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58E7EFD1-4570-4A5C-A768-E655FD2C94C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF466A33-4E3C-4457-903F-48DF51CE4E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF466A33-4E3C-4457-903F-48DF51CE4E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF466A33-4E3C-4457-903F-48DF51CE4E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF466A33-4E3C-4457-903F-48DF51CE4E22}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ED8309C9-1A0E-4093-AC13-57A465336B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ED8309C9-1A0E-4093-AC13-57A465336B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED8309C9-1A0E-4093-AC13-57A465336B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU

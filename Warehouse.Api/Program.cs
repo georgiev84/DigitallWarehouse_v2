@@ -64,7 +64,7 @@ builder.Host.UseSerilog((context, configuration) =>
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",
-        builder => builder.WithOrigins("http://localhost:3000")
+        builder => builder.WithOrigins("http://localhost:3000", "https://digtiall-react.azurewebsites.net")
                           .AllowAnyMethod()
                           .AllowAnyHeader());
 });
@@ -72,11 +72,11 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
+if (app.Environment.IsDevelopment())
+{
     app.UseSwagger();
     app.UseSwaggerUI();
-//}
+}
 
 app.UseSerilogRequestLogging();
 app.UseCors("AllowReactApp");

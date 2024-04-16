@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouse.Tests", "Warehous
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DF466A33-4E3C-4457-903F-48DF51CE4E22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouse.Security.Redis", "Warehouse.Security.Redis\Warehouse.Security.Redis.csproj", "{ED8309C9-1A0E-4093-AC13-57A465336B0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouse.Security.Redis", "Warehouse.Security.Redis\Warehouse.Security.Redis.csproj", "{ED8309C9-1A0E-4093-AC13-57A465336B0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouse.IntegrationTests", "Warehouse.IntegrationTests\Warehouse.IntegrationTests.csproj", "{44573A99-13A7-4D80-83B6-ED3BA48C759D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{ED8309C9-1A0E-4093-AC13-57A465336B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED8309C9-1A0E-4093-AC13-57A465336B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED8309C9-1A0E-4093-AC13-57A465336B0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44573A99-13A7-4D80-83B6-ED3BA48C759D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44573A99-13A7-4D80-83B6-ED3BA48C759D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44573A99-13A7-4D80-83B6-ED3BA48C759D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44573A99-13A7-4D80-83B6-ED3BA48C759D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Google;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -11,6 +13,7 @@ namespace Warehouse.IntegrationTests;
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
     private readonly MsSqlContainer _dbContainer = new MsSqlBuilder().Build();
+    public Task Initialization { get; private set; }
 
     public CustomWebApplicationFactory()
     {
@@ -19,10 +22,19 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-
         builder.ConfigureTestServices(services =>
         {
-            services.RemoveAll(typeof(WarehouseDbContext));
+            var descriptorType =
+                typeof(DbContextOptions<WarehouseDbContext>);
+
+            var descriptor = services
+                .SingleOrDefault(s => s.ServiceType == descriptorType);
+
+            if (descriptor is not null)
+            {
+                services.Remove(descriptor);
+            }
+
             services.AddDbContext<WarehouseDbContext>(options =>
                 options.UseSqlServer(_dbContainer.GetConnectionString()));
         });

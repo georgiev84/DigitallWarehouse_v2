@@ -11,22 +11,10 @@ namespace Warehouse.IntegrationTests;
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
     private readonly MsSqlContainer _dbContainer = new MsSqlBuilder().Build();
-    private readonly string _connectionString;
 
     public CustomWebApplicationFactory()
     {
-        //_dbContainer = new MsSqlBuilder()
-        //    .WithPassword("$trongPassword")
-        //    .WithPortBinding(1433, true)
-        //    .WithEnvironment("ACCEPT_EULA", "Y")
-        //    .WithEnvironment("MSSQL_SA_PASSWORD", "$trongPassword")
-        //    .Build();
-
         _dbContainer.StartAsync().Wait();
-
-        //var host = _dbContainer.Hostname;
-        //var port = _dbContainer.GetMappedPublicPort(1433);
-        //_connectionString = $"Server={host},{port};Database=master;User Id=sa;Password=$trongPassword;TrustServerCertificate=True";
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)

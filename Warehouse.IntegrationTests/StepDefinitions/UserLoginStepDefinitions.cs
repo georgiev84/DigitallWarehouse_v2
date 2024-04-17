@@ -24,7 +24,7 @@ namespace Warehouse.IntegrationTests.StepDefinitions
         [Given(@"a valid login request with correct password")]
         public void GivenAValidLoginRequestWithCorrectPassword()
         {
-            var loginRequest = new LoginRequest { Email = "john.doe@example.com", Password = "password123" };
+            _loginRequest = new LoginRequest { Email = "john.doe@example.com", Password = "password123" };
         }
 
         [When(@"the user submits the login request")]

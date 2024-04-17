@@ -9,33 +9,33 @@ using Warehouse.Persistence.EF.Persistence.Contexts;
 namespace Warehouse.IntegrationTests;
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
-    private readonly MsSqlContainer _dbContainer;
+    private readonly MsSqlContainer _dbContainer = new MsSqlBuilder().Build();
     private readonly string _connectionString;
 
     public CustomWebApplicationFactory()
     {
-        _dbContainer = new MsSqlBuilder()
-            .WithPassword("$trongPassword")
-            .WithPortBinding(1433, true)
-            .WithEnvironment("ACCEPT_EULA", "Y")
-            .WithEnvironment("MSSQL_SA_PASSWORD", "$trongPassword")
-            .Build();
+        //_dbContainer = new MsSqlBuilder()
+        //    .WithPassword("$trongPassword")
+        //    .WithPortBinding(1433, true)
+        //    .WithEnvironment("ACCEPT_EULA", "Y")
+        //    .WithEnvironment("MSSQL_SA_PASSWORD", "$trongPassword")
+        //    .Build();
+
         _dbContainer.StartAsync().Wait();
 
-        var host = _dbContainer.Hostname;
-        var port = _dbContainer.GetMappedPublicPort(1433);
-        _connectionString = $"Server={host},{port};Database=master;User Id=sa;Password=$trongPassword;TrustServerCertificate=True";
+        //var host = _dbContainer.Hostname;
+        //var port = _dbContainer.GetMappedPublicPort(1433);
+        //_connectionString = $"Server={host},{port};Database=master;User Id=sa;Password=$trongPassword;TrustServerCertificate=True";
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
 
-        builder.ConfigureServices(services =>
+        builder.ConfigureTestServices(services =>
         {
-
             services.RemoveAll(typeof(WarehouseDbContext));
             services.AddDbContext<WarehouseDbContext>(options =>
-                options.UseSqlServer(_connectionString));
+                options.UseSqlServer(_dbContainer.GetConnectionString()));
         });
     }
 

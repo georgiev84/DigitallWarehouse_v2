@@ -13,23 +13,25 @@ namespace Warehouse.IntegrationTests.StepDefinitions
         private CustomWebApplicationFactory _factory;
         private HttpClient _client;
         private HttpResponseMessage _response;
+        private LoginRequest _loginRequest;
 
         public UserLoginStepDefinitions(CustomWebApplicationFactory factory)
         {
             _factory = factory;
+            _client = factory.CreateDefaultClient(new Uri($"http://localhost/"));
         }
 
-        [Given(@"a valid login request")]
-        public void GivenAValidLoginRequest()
+        [Given(@"a valid login request with correct password")]
+        public void GivenAValidLoginRequestWithCorrectPassword()
         {
-            _client = _factory.CreateClient();
+            var loginRequest = new LoginRequest { Email = "john.doe@example.com", Password = "password123" };
         }
 
         [When(@"the user submits the login request")]
         public async Task WhenTheUserSubmitsTheLoginRequest()
         {
-            var loginRequest = new LoginRequest { Email = "john.doe@example.com", Password = "password123" };
-            _response = await _client.PostAsJsonAsync("api/authentication/login", loginRequest);
+            
+            _response = await _client.PostAsJsonAsync("api/authentication/login", _loginRequest);
         }
 
         [Then(@"the response status code should be (.*) OK")]

@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Identity.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using System.Net;
 using System.Net.Http.Json;
 using Warehouse.Api.Models.Responses.LoginResponses;
@@ -18,11 +16,12 @@ namespace Warehouse.IntegrationTests.StepDefinitions
         private LoginRequest _loginRequest;
         private WarehouseDbContext _dbContext;
         private User _testUser;
+        private ScenarioContext _scenarioContext;
 
-        //public UserLoginStepDefinitions(WarehouseDbContext dbContext)
-        //{
-        //    _dbContext = dbContext;
-        //}
+        public UserLoginStepDefinitions(ScenarioContext context)
+        {
+            _scenarioContext = context;
+        }
 
         [BeforeScenario]
         public void BeforeScenario()
@@ -30,19 +29,6 @@ namespace Warehouse.IntegrationTests.StepDefinitions
             
             _factory = new CustomWebApplicationFactory();
             _client = _factory.CreateDefaultClient(new Uri($"http://localhost/"));
-
-            //using (var scope = _factory.Services.CreateScope())
-            //{
-            //    _dbContext = scope.ServiceProvider.GetRequiredService<WarehouseDbContext>();
-
-            //    _testUser = new User { Email = "test@test.com", Password = "testuserpassword" };
-            //    _dbContext.Users.Add(_testUser);
-            //    _dbContext.SaveChangesAsync();
-            //}
-
-            //_testUser = new User { Email = "test@test.com", Password="testuserpassword" };
-            //_dbContext.Users.Add(_testUser);
-            //_dbContext.SaveChanges();
         }
 
         [AfterScenario]
@@ -58,11 +44,11 @@ namespace Warehouse.IntegrationTests.StepDefinitions
             _client.Dispose();
         }
 
+
         [Given(@"a valid login request with correct password")]
         public void GivenAValidLoginRequestWithCorrectPassword()
         {
             _loginRequest = new LoginRequest { Email = "john.doe@example.com", Password = "password123" };
-            //_loginRequest = new LoginRequest { Email = "test@test.com", Password = "testuserpassword" };
         }
 
         [Given(@"a valid login request with wrong password")]
@@ -81,13 +67,15 @@ namespace Warehouse.IntegrationTests.StepDefinitions
         [Then(@"the response status code should be (.*) OK")]
         public void ThenTheResponseStatusCodeShouldBeOK(int expectedStatusCode)
         {
-            _response.StatusCode.Should().Be((HttpStatusCode)expectedStatusCode);
+             _response.StatusCode.Should().Be((HttpStatusCode)expectedStatusCode);
         }
 
         [Then(@"the response should contain a valid JWT token")]
         public async Task ThenTheResponseShouldContainAValidJWTToken()
         {
             var loginResponse = await _response.Content.ReadFromJsonAsync<LoginResponse>();
+
+            _scenarioContext.Add("UserJWTToken", loginResponse.Token);
             loginResponse.Should().NotBeNull();
             loginResponse?.Token.Should().NotBeNull().And.NotBeEmpty();
         }
@@ -101,5 +89,13 @@ namespace Warehouse.IntegrationTests.StepDefinitions
             loginResponse.Token.Should().BeNull("because the login attempt failed and no JWT token should be returned");
         }
 
+        [Given(@"a logged-in user with a valid JWT token")]
+        public async Task GivenALoggedInUserWithAValidJWTToken()
+        {
+            GivenAValidLoginRequestWithCorrectPassword();
+            await WhenTheUserSubmitsTheLoginRequest();
+            ThenTheResponseStatusCodeShouldBeOK(200);
+            await ThenTheResponseShouldContainAValidJWTToken();
+        }
     }
 }

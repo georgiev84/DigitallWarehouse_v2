@@ -6,18 +6,23 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using StackExchange.Redis;
 using Testcontainers.MsSql;
+using Testcontainers.Redis;
+using Warehouse.Application.Identity;
 using Warehouse.Persistence.EF.Persistence.Contexts;
 
 namespace Warehouse.IntegrationTests;
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
+    private readonly RedisContainer _redisContainer = new RedisBuilder().Build();
     private readonly MsSqlContainer _dbContainer = new MsSqlBuilder().Build();
     public Task Initialization { get; private set; }
 
     public CustomWebApplicationFactory()
     {
         _dbContainer.StartAsync().Wait();
+        _redisContainer.StartAsync().Wait();
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -37,6 +42,12 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 
             services.AddDbContext<WarehouseDbContext>(options =>
                 options.UseSqlServer(_dbContainer.GetConnectionString()));
+
+            services.AddStackExchangeRedisCache(options =>
+            {
+                string connection = _redisContainer.GetConnectionString();
+                options.Configuration = connection;
+            });
         });
     }
 

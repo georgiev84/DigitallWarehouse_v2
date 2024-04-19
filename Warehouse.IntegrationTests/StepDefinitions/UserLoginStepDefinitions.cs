@@ -44,7 +44,6 @@ namespace Warehouse.IntegrationTests.StepDefinitions
             _client.Dispose();
         }
 
-
         [Given(@"a valid login request with correct password")]
         public void GivenAValidLoginRequestWithCorrectPassword()
         {
@@ -60,7 +59,6 @@ namespace Warehouse.IntegrationTests.StepDefinitions
         [When(@"the user submits the login request")]
         public async Task WhenTheUserSubmitsTheLoginRequest()
         {
-            
             _response = await _client.PostAsJsonAsync("api/authentication/login", _loginRequest);
         }
 
@@ -79,7 +77,6 @@ namespace Warehouse.IntegrationTests.StepDefinitions
             loginResponse.Should().NotBeNull();
             loginResponse?.Token.Should().NotBeNull().And.NotBeEmpty();
         }
-
 
         [Then(@"the response should not contain a JWT token")]
         public async Task ThenTheResponseShouldNotContainAJWTToken()

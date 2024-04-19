@@ -1,4 +1,4 @@
-﻿@Warehouse.Api_HostAddress = http://localhost:5140
+﻿@Warehouse.Api_HostAddress = http://localhost:44316
 
 ### ProductsController
 
@@ -13,10 +13,11 @@ accept:  application/json
 ### Create Product
 POST {{Warehouse.Api_HostAddress}}/api/products
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMTExMTExMS0yMjIyLTIzMjEtMjMyMS0xMTExMTExMTE0NTYiLCJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwiZ2l2ZW5fbmFtZSI6IkpvaG4iLCJmYW1pbHlfbmFtZSI6IkRvZSIsImp0aSI6IjRhY2EwMWIyLWYyYzAtNDFjYi1hYjA5LWU4NGRjMTQyZWU1MyIsIlJvbGUiOiJhZG1pbiIsImV4cCI6MTcxMzUwODM4MSwiaXNzIjoiRGlnaXRhbGxXYXJlaG91c2UiLCJhdWQiOiJEaWdpdGFsbFdhcmVob3VzZSJ9.x4BVWd-s9R1aQrAkwf9RR-Wters-swrTdbRN1NJ8lQI
 
 {
   "brandId": "22222222-2222-2222-2222-222222222222",
-  "title": "Digitall Product225",
+  "title": "Digitall Product2256",
   "description": "Test Product",
   "price": 41,
   "groupIds": [

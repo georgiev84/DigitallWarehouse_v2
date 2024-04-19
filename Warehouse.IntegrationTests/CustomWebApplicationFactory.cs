@@ -8,6 +8,7 @@ using Testcontainers.Redis;
 using Warehouse.Persistence.EF.Persistence.Contexts;
 
 namespace Warehouse.IntegrationTests;
+
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
     private readonly RedisContainer _redisContainer = new RedisBuilder().Build();

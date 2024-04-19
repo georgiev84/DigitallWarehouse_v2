@@ -8,7 +8,7 @@ using Warehouse.Persistence.EF.Persistence.Contexts;
 namespace Warehouse.IntegrationTests.StepDefinitions
 {
     [Binding]
-    public class UserLoginStepDefinitions 
+    public class UserLoginStepDefinitions
     {
         private CustomWebApplicationFactory _factory;
         private HttpClient _client;
@@ -26,7 +26,6 @@ namespace Warehouse.IntegrationTests.StepDefinitions
         [BeforeScenario]
         public void BeforeScenario()
         {
-            
             _factory = new CustomWebApplicationFactory();
             _client = _factory.CreateDefaultClient(new Uri($"http://localhost/"));
         }
@@ -65,7 +64,7 @@ namespace Warehouse.IntegrationTests.StepDefinitions
         [Then(@"the response status code should be (.*) OK")]
         public void ThenTheResponseStatusCodeShouldBeOK(int expectedStatusCode)
         {
-             _response.StatusCode.Should().Be((HttpStatusCode)expectedStatusCode);
+            _response.StatusCode.Should().Be((HttpStatusCode)expectedStatusCode);
         }
 
         [Then(@"the response should contain a valid JWT token")]

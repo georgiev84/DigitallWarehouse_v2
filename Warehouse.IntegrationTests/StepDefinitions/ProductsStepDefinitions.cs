@@ -76,7 +76,7 @@ namespace Warehouse.IntegrationTests.StepDefinitions
                     Guid.Parse("88888888-8888-8888-8888-888888888888"),
                     Guid.Parse("99999999-9999-9999-9999-999999999999")
                 },
-                 Sizes = new List<SizeInformationRequest>
+                Sizes = new List<SizeInformationRequest>
                 {
                     new SizeInformationRequest { Id = Guid.Parse("33333333-3333-3333-3333-333333333333"), Quantity = 31 },
                     new SizeInformationRequest { Id = Guid.Parse("44444444-4444-4444-4444-444444444444"), Quantity = 32 },

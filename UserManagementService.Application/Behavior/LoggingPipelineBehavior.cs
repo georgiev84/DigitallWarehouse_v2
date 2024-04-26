@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using UserManagementService.Application.Extensions;
 using UserManagementService.Application.Models.Dto;
 
-namespace Warehouse.Application.Behavior;
+namespace UserManagementService.Application.Behavior;
 
 public class LoggingPipelineBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>

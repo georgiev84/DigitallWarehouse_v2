@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using System.IdentityModel.Tokens.Jwt;
 using UserManagementService.Application.Models.Dto.Login;
-using Warehouse.Application.Common.Interfaces.Persistence;
-using Warehouse.Application.Common.Interfaces.Security;
+using UserManagementService.Application.Common.Interfaces.Persistence;
+using UserManagementService.Application.Common.Interfaces.Security;
 
-namespace Warehouse.Application.Features.Queries.Logout;
+namespace UserManagementService.Application.Features.Queries.Logout;
 
 public class LogoutHandler : IRequestHandler<LogoutQuery, LogoutModel>
 {

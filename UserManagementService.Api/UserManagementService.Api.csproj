@@ -12,11 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Warehouse.Application\Warehouse.Application.csproj" />
-    <ProjectReference Include="..\Warehouse.Infrastructure\Warehouse.Infrastructure.csproj" />
-    <ProjectReference Include="..\Warehouse.Persistence.EF\Warehouse.Persistence.EF.csproj" />
-    <ProjectReference Include="..\Warehouse.Security.Redis\Warehouse.Security.Redis.csproj" />
-    <ProjectReference Include="..\Warehouse.Security\Warehouse.Security.csproj" />
+    <ProjectReference Include="..\UserManagementService.Application\UserManagementService.Application.csproj" />
+    <ProjectReference Include="..\UserManagementService.Infrastructure\UserManagementService.Infrastructure.csproj" />
+    <ProjectReference Include="..\UserManagementService.Persistence.EF\UserManagementService.Persistence.EF.csproj" />
+    <ProjectReference Include="..\UserManagementService.Security.Redis\UserManagementService.Security.Redis.csproj" />
+    <ProjectReference Include="..\UserManagementService.Security\UserManagementService.Security.csproj" />
   </ItemGroup>
 
 </Project>

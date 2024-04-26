@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementService.Api.Models.Requests.LoginRequests;
 using UserManagementService.Api.Models.Responses.LoginResponses;
-using Warehouse.Application.Features.Queries.Login;
-using Warehouse.Application.Features.Queries.LoginGoogle;
-using Warehouse.Application.Features.Queries.Logout;
-using Warehouse.Application.Features.Queries.Refresh;
+using UserManagementService.Application.Features.Queries.Login;
+using UserManagementService.Application.Features.Queries.LoginGoogle;
+using UserManagementService.Application.Features.Queries.Logout;
+using UserManagementService.Application.Features.Queries.Refresh;
 
 namespace UserManagementService.Api.Controllers;
 

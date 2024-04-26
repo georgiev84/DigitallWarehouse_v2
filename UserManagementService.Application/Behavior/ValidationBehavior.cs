@@ -1,13 +1,13 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Warehouse.Application.Extensions;
-using Warehouse.Application.Models.Dto.ProductDtos;
+using UserManagementService.Application.Extensions;
+using UserManagementService.Application.Models.Dto;
 
-namespace Warehouse.Application.Behavior;
+namespace UserManagementService.Application.Behavior;
 
 public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
-    where TResponse : ProductDto
+    where TResponse : UserDto
 {
     private readonly IValidator<TRequest> _validator;
     private readonly ILogger<ValidationBehavior<TRequest, TResponse>> _logger;

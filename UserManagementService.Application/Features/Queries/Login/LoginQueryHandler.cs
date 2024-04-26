@@ -1,11 +1,10 @@
 ﻿using MediatR;
 using UserManagementService.Application.Common.Interfaces.Persistence;
 using UserManagementService.Application.Common.Interfaces.Security;
-using UserManagementService.Application.Features.Queries.Login;
 using UserManagementService.Application.Models.Dto.Login;
 using UserManagementService.Domain.Entities.Users;
 
-namespace Warehouse.Application.Features.Queries.Login;
+namespace UserManagementService.Application.Features.Queries.Login;
 
 public class LoginCommandHandler : IRequestHandler<LoginQuery, LoginModel>
 {

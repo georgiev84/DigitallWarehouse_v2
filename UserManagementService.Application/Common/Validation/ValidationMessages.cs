@@ -1,4 +1,4 @@
-﻿namespace Warehouse.Application.Common.Validation;
+﻿namespace UserManagementService.Application.Common.Validation;
 
 public static class ValidationMessages
 {

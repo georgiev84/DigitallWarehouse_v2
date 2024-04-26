@@ -1,4 +1,20 @@
+using MediatR;
+using UserManagementService.Application.Behavior;
+using UserManagementService.Application.Extensions;
+
+using UserManagementService.Persistence.EF.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services
+    .AddApplication()
+    .AddPersistenceEF(builder.Configuration)
+    .AddAuth(builder.Configuration)
+    .AddRedis(builder.Configuration);
+
+builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
+builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
 // Add services to the container.
 

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Google.Apis.Auth" Version="1.67.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+    <ProjectReference Include="..\UserManagementService.Application\UserManagementService.Application.csproj" />
+    <ProjectReference Include="..\UserManagementService.Domain\UserManagementService.Domain.csproj" />
+    <ProjectReference Include="..\UserManagementService.Security.Redis\UserManagementService.Security.Redis.csproj" />
+  </ItemGroup>
+
+</Project>

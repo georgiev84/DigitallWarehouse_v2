@@ -1,5 +1,5 @@
 ﻿using UserManagementService.Application.Common.Interfaces.Persistence;
-using Warehouse.Persistence.EF.Persistence.Contexts;
+using UserManagementService.Persistence.EF.Persistence.Contexts;
 
 namespace UserManagementService.Persistence.EF.Persistence;
 

@@ -1,12 +1,15 @@
 using MediatR;
 using UserManagementService.Application.Behavior;
 using UserManagementService.Application.Extensions;
-
+using UserManagementService.Security.Extensions;
 using UserManagementService.Persistence.EF.Extensions;
+using System.Reflection;
+using UserManagementService.Api.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
+//builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services
     .AddApplication()
     .AddPersistenceEF(builder.Configuration)

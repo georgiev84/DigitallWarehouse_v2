@@ -21,4 +21,8 @@
 		<ProjectReference Include="..\Warehouse.Persistence.Abstractions\Warehouse.Persistence.Abstractions.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Migrations\" />
+	</ItemGroup>
+
 </Project>

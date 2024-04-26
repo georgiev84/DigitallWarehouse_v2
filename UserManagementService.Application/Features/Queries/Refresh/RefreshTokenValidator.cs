@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Warehouse.Application.Features.Queries.Refresh;
+namespace UserManagementService.Application.Features.Queries.Refresh;
 
 public class RefreshTokenValidator : AbstractValidator<RefreshTokenQuery>
 {

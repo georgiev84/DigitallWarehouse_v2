@@ -8,8 +8,7 @@ public class SeedDataConfiguration :
 
     IEntityTypeConfiguration<User>,
     IEntityTypeConfiguration<Role>,
-    IEntityTypeConfiguration<UserRole>,
-
+    IEntityTypeConfiguration<UserRole>
 {
 
     public void Configure(EntityTypeBuilder<User> builder)
@@ -50,5 +49,4 @@ public class SeedDataConfiguration :
 
         builder.HasData(userRole);
     }
-
 }

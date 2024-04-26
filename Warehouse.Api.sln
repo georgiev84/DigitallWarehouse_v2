@@ -21,7 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouse.Tests", "Warehous
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DF466A33-4E3C-4457-903F-48DF51CE4E22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouse.Security.Redis", "Warehouse.Security.Redis\Warehouse.Security.Redis.csproj", "{ED8309C9-1A0E-4093-AC13-57A465336B0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouse.Security.Redis", "Warehouse.Security.Redis\Warehouse.Security.Redis.csproj", "{ED8309C9-1A0E-4093-AC13-57A465336B0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouse.Reporting.Api", "Warehouse.Reporting.Api\Warehouse.Reporting.Api.csproj", "{6D60D0FD-3DE1-4966-9AA5-A5C8D13A83BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouse.Contracts", "Warehouse.Contracts\Warehouse.Contracts.csproj", "{CDB47277-2542-4DEE-A2B6-705CD9A5070E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,14 @@ Global
 		{ED8309C9-1A0E-4093-AC13-57A465336B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED8309C9-1A0E-4093-AC13-57A465336B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED8309C9-1A0E-4093-AC13-57A465336B0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D60D0FD-3DE1-4966-9AA5-A5C8D13A83BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D60D0FD-3DE1-4966-9AA5-A5C8D13A83BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D60D0FD-3DE1-4966-9AA5-A5C8D13A83BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D60D0FD-3DE1-4966-9AA5-A5C8D13A83BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDB47277-2542-4DEE-A2B6-705CD9A5070E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDB47277-2542-4DEE-A2B6-705CD9A5070E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDB47277-2542-4DEE-A2B6-705CD9A5070E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDB47277-2542-4DEE-A2B6-705CD9A5070E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

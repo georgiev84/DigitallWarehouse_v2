@@ -14,6 +14,14 @@ services:
     networks:
       - app-tier
 
+  warehouse.reporting.api:
+    image: ${DOCKER_REGISTRY-}warehousereportingapi
+    build:
+      context: .
+      dockerfile: Warehouse.Reporting.Api/Dockerfile
+    networks:
+      - app-tier
+
   redis:
     image: 'bitnami/redis:latest'
     environment:
@@ -23,6 +31,15 @@ services:
       - app-tier
     ports:
       - "6379:6379"
+
+  warehouse.mq:
+    image: rabbitmq:management
+    networks:
+      - app-tier
+    ports:
+      - "5672:5672" 
+      - "15672:15672"
+
 
 networks: 
   app-tier:

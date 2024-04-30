@@ -7,7 +7,6 @@ using Warehouse.Api.Filters;
 using Warehouse.Application.Behavior;
 using Warehouse.Application.Extensions;
 using Warehouse.Persistence.EF.Extensions;
-using Warehouse.Security.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,9 +14,7 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration)
-    .AddPersistenceEF(builder.Configuration)
-    .AddAuth(builder.Configuration)
-    .AddRedis(builder.Configuration);
+    .AddPersistenceEF(builder.Configuration);
 
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
@@ -64,7 +61,7 @@ builder.Host.UseSerilog((context, configuration) =>
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",
-        builder => builder.WithOrigins("http://localhost:3000")
+        builder => builder.WithOrigins("http://localhost:3000", "http://localhost:5000", "https://localhost:5001")
                           .AllowAnyMethod()
                           .AllowAnyHeader());
 });

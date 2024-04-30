@@ -3,9 +3,9 @@ using UserManagementService.Domain.Entities.Users;
 
 namespace UserManagementService.Persistence.EF.Persistence.Contexts;
 
-public class WarehouseDbContext : DbContext
+public class UsersDbContext : DbContext
 {
-    public WarehouseDbContext(DbContextOptions options) : base(options)
+    public UsersDbContext(DbContextOptions options) : base(options)
     {
         Database.Migrate();
     }
@@ -16,7 +16,7 @@ public class WarehouseDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.ApplyConfigurationsFromAssembly(typeof(WarehouseDbContext).Assembly);
+        builder.ApplyConfigurationsFromAssembly(typeof(UsersDbContext).Assembly);
         base.OnModelCreating(builder);
     }
 

@@ -6,6 +6,11 @@ services:
     networks:
       - app-tier
 
+  userssql:
+    image: 'mcr.microsoft.com/mssql/server'
+    networks:
+      - app-tier
+
   warehouse.api:
     image: ${DOCKER_REGISTRY-}warehouseapi
     build:
@@ -24,6 +29,26 @@ services:
     ports:
       - "6379:6379"
 
+  usermanagementservice.api:
+    image: ${DOCKER_REGISTRY-}usermanagementserviceapi
+    build:
+      context: .
+      dockerfile: UserManagementService.Api/Dockerfile
+    networks:
+      - app-tier
+
+  apigateway:
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    networks:
+      - app-tier
+
 networks: 
   app-tier:
     driver: bridge
+
+
+
+

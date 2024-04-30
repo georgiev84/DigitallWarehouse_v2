@@ -2,7 +2,7 @@
 
 namespace Warehouse.Api.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/shop/[controller]")]
 [ApiController]
 public class BaseController : ControllerBase
 {

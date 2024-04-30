@@ -1,0 +1,63 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/shop/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 5202
+        }
+      ],
+      "UpstreamPathTemplate": "/api/shop/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ],
+      "SwaggerKey": "shop",
+    },
+    {
+      "DownstreamPathTemplate": "/api/authentication/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 5204
+        }
+      ],
+      "UpstreamPathTemplate": "/api/authentication/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ],
+      "SwaggerKey": "Auth"
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "shop",
+      "VersionPlaceholder": "{version}",
+      "KeyToPath": "shop",
+      "Config": [
+        {
+          "Name": "Shop API",
+          "Version": "v1",
+          "Url": "http://host.docker.internal:5202/swagger/v1/swagger.json",
+          "Service": {
+            "Name": "shop",
+            "Path": "/swagger/v1/swagger.json"
+          }
+        }
+      ],
+      "HostOverride": null,
+      "TransformByOcelotConfig": true
+    },
+    {
+      "Key": "Auth",
+      "Config": [
+        {
+          "Name": "Authentication API",
+          "Version": "v1",
+          "Url": "http://host.docker.internal:5204/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  }
+}

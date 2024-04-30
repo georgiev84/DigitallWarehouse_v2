@@ -17,7 +17,7 @@ public static class DependencyRegistrationExtension
             throw new ArgumentNullException(nameof(configuration));
         }
 
-        services.AddDbContext<WarehouseDbContext>(
+        services.AddDbContext<UsersDbContext>(
             options => options.UseSqlServer(configuration.GetConnectionString("UsersDbConnection"),
             options => options.UseCompatibilityLevel(150)));
         services.AddScoped<IUnitOfWork, UnitOfWork>();

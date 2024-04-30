@@ -8,7 +8,7 @@ namespace UserManagementService.Persistence.EF.Persistence.Repositories;
 
 public class UserRepository : GenericRepository<User>, IUserRepository
 {
-    public UserRepository(WarehouseDbContext dbContext) : base(dbContext)
+    public UserRepository(UsersDbContext dbContext) : base(dbContext)
     {
     }
 

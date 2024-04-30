@@ -14,6 +14,19 @@ services:
     volumes:
       - sqldata:/var/opt/mssql
 
+  userssql:
+    image: mcr.microsoft.com/mssql/server:latest
+    environment:
+      MSSQL_SERVER: Users_Sql_Server
+      MSSQL_SA_PASSWORD: Your_Sql_Password_123
+      ACCEPT_EULA: Y
+      MSSQL_USER: sa
+      MSSQL_DATABASE: UsersDb
+    ports:
+      - "5434:1433"
+    volumes:
+      - sqluserdata:/var/opt/mssql
+
   warehouse.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -23,12 +36,42 @@ services:
       - ConnectionStrings__WarehouseDbConnection=Server=sql;Database=Warehouse;User Id=sa;Password=Your_Sql_Password_123;TrustServerCertificate=True;
       - ConnectionStrings__Redis=redis
     ports:
-      - "5200:80"
-      - "5201:443"
+      - "5202:80"
+      - "5203:443"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 
+
+  usermanagementservice.api:
+    container_name: user-service
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ConnectionStrings__UsersDbConnection=Server=userssql;Database=UsersDb;User Id=sa;Password=Your_Sql_Password_123;TrustServerCertificate=True;
+      - ConnectionStrings__Redis=redis
+    ports:
+      - "5204:80"
+      - "5205:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+  
+  apigateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "5000:80"
+      - "5001:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 volumes:
   sqldata:
     driver: local
+  sqluserdata:
+    driver: local
+
+
+

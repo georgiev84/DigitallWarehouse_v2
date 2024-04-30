@@ -5,11 +5,11 @@ namespace Warehouse.Persistence.EF.Persistence;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly WarehouseDbContext _dbContext;
+    private readonly UsersDbContext _dbContext;
     public IUserRepository Users { get; set; }
 
     public UnitOfWork(
-        WarehouseDbContext dbContext,
+        UsersDbContext dbContext,
         IUserRepository users)
     {
         _dbContext = dbContext;

@@ -26,6 +26,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSwagger",
+        builder =>
+        {
+            // Allow requests from the Ocelot API Gateway
+            builder.WithOrigins("http://localhost:5000", "https://localhost:5001")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,7 +47,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("AllowSwagger");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

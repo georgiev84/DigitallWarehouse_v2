@@ -12,6 +12,7 @@ services:
       - app-tier
 
   warehouse.api:
+    hostname: warehouse.api
     image: ${DOCKER_REGISTRY-}warehouseapi
     build:
       context: .

@@ -43,6 +43,7 @@ services:
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 
 
+
   usermanagementservice.api:
     container_name: user-service
     environment:

@@ -12,6 +12,13 @@
       "UpstreamPathTemplate": "/api/shop/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ],
       "SwaggerKey": "shop",
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true, // Enable rate limiting for this route
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
     },
     {
       "DownstreamPathTemplate": "/api/authentication/{everything}",
@@ -30,21 +37,13 @@
   "SwaggerEndPoints": [
     {
       "Key": "shop",
-      "VersionPlaceholder": "{version}",
-      "KeyToPath": "shop",
       "Config": [
         {
           "Name": "Shop API",
           "Version": "v1",
           "Url": "http://host.docker.internal:5202/swagger/v1/swagger.json",
-          "Service": {
-            "Name": "shop",
-            "Path": "/swagger/v1/swagger.json"
-          }
         }
-      ],
-      "HostOverride": null,
-      "TransformByOcelotConfig": true
+      ]
     },
     {
       "Key": "Auth",
@@ -58,6 +57,6 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5000"
+    "BaseUrl": "http://localhost:5001"
   }
 }

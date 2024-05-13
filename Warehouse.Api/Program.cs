@@ -1,3 +1,4 @@
+using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -8,10 +9,12 @@ using Serilog;
 using System.Text;
 using System.Text.Json.Serialization;
 using Warehouse.Api.Filters;
+using Warehouse.Api.MessageBroker;
 using Warehouse.Api.Security;
 using Warehouse.Application.Behavior;
 using Warehouse.Application.Extensions;
 using Warehouse.Persistence.EF.Extensions;
+using static MassTransit.Logging.OperationName;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,16 +23,48 @@ builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration)
     .AddPersistenceEF(builder.Configuration);
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    string connection = builder.Configuration.GetConnectionString("Redis");
+    options.Configuration = connection;
+});
 
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
-builder.Services.AddControllers(options => options.Filters.Add(typeof(ErrorHandlingFilter)))
-    .AddJsonOptions(options =>
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add(typeof(ErrorHandlingFilter));
+    options.Filters.Add<TokenAuthorizeFilter>();
+})
+.AddJsonOptions(options =>
         {
             options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             options.JsonSerializerOptions.WriteIndented = true;
         });
+
+builder.Services.AddMassTransit(busConfigurator =>
+{
+    busConfigurator.SetKebabCaseEndpointNameFormatter();
+    busConfigurator.AddConsumer<TokenBlacklistConsumer>();
+    busConfigurator.UsingRabbitMq((context, configurator) =>
+    {
+        configurator.Host(new Uri(builder.Configuration["MessageBroker:Host"]!), h =>
+        {
+            h.Username(builder.Configuration["MessageBroker:Username"]);
+            h.Password(builder.Configuration["MessageBroker:Password"]);
+        });
+
+        configurator.ConfigureEndpoints(context);
+
+        configurator.ReceiveEndpoint("token-logout", e =>
+        {
+            e.ConfigureConsumer<TokenBlacklistConsumer>(context);
+        });
+    });
+
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

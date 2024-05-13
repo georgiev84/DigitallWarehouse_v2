@@ -2,6 +2,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
+using Warehouse.Api.Filters;
 using Warehouse.Api.Models.Requests.Product;
 using Warehouse.Api.Models.Responses.ProductResponses;
 using Warehouse.Application.Features.Commands.Products.Delete;
@@ -16,6 +18,7 @@ namespace Warehouse.Api.Controllers;
 public class ProductsController : BaseController
 {
     [HttpGet]
+    [TokenAuthorizeFilter]
     public async Task<IActionResult> GetProducts(
          [FromQuery] ProductFilterRequest productFilter,
          [FromServices] ISender _mediator,
@@ -58,7 +61,8 @@ public class ProductsController : BaseController
         Guid productId,
         [FromBody] ProductUpdateRequest productUpdateRequest,
         [FromServices] ISender _mediator,
-        [FromServices] IMapper _mapper)
+        [FromServices] IMapper _mapper,
+        [FromServices] IDistributedCache _distributedCache)
     {
         productUpdateRequest.Id = productId;
         var command = _mapper.Map<ProductUpdateCommand>(productUpdateRequest);

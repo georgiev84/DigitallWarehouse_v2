@@ -5,6 +5,9 @@ using UserManagementService.Security.Extensions;
 using UserManagementService.Persistence.EF.Extensions;
 using System.Reflection;
 using UserManagementService.Api.Mappings;
+using MassTransit;
+using UserManagementService.Infrastructure.Extensions;
+using static MassTransit.Logging.OperationName;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +29,23 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddMassTransit(busConfigurator =>
+{
+    busConfigurator.SetKebabCaseEndpointNameFormatter();
+    busConfigurator.UsingRabbitMq((context, configurator) =>
+    {
+        configurator.Host(new Uri(builder.Configuration["MessageBroker:Host"]!), h =>
+        {
+            h.Username(builder.Configuration["MessageBroker:Username"]);
+            h.Password(builder.Configuration["MessageBroker:Password"]);
+        });
+
+        configurator.ConfigureEndpoints(context);
+        configurator.AutoStart = true;
+
+    });
+
+});
 
 builder.Services.AddCors(options =>
 {

@@ -13,11 +13,13 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.2" />
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
@@ -26,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Warehouse.Application\Warehouse.Application.csproj" />
     <ProjectReference Include="..\Warehouse.Infrastructure\Warehouse.Infrastructure.csproj" />
+    <ProjectReference Include="..\Warehouse.Persistence.Abstractions\Warehouse.Persistence.Abstractions.csproj" />
     <ProjectReference Include="..\Warehouse.Persistence.EF\Warehouse.Persistence.EF.csproj" />
   </ItemGroup>
 

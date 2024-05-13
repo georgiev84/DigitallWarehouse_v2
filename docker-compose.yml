@@ -30,6 +30,16 @@ services:
     ports:
       - "6379:6379"
 
+  warehouse.redis:
+    image: 'bitnami/redis:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes 
+    container_name: warehouse.redis
+    networks:
+      - app-tier
+    ports:
+      - "6380:6380"
+
   usermanagementservice.api:
     image: ${DOCKER_REGISTRY-}usermanagementserviceapi
     build:

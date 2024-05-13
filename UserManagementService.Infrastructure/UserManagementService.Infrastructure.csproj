@@ -10,8 +10,4 @@
     <ProjectReference Include="..\UserManagementService.Application\UserManagementService.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
-
 </Project>
